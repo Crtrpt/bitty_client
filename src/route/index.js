@@ -54,14 +54,43 @@ const route = [
       },
     ]
   },
- 
   {
-    path: "/contact",
+    path: "/my",
     component: AppLayout,
     children: [
       {
-        path: "index",
-        component: () => import(`../page/contact/Index.vue`),
+        path: "profile",
+        component: () => import(`../page/my/Profile.vue`),
+      },
+    ]
+  },
+  {
+    path: "/search",
+    component: AppLayout,
+    children: [
+      {
+        path: "",
+        component: () => import(`../page/system/Search.vue`),
+      },
+    ]
+  },
+  {
+    path: "/setting",
+    component: AppLayout,
+    children: [
+      {
+        path: "",
+        component: () => import(`../page/system/Setting.vue`),
+      },
+    ]
+  },
+  {
+    path: "/message",
+    component: AppLayout,
+    children: [
+      {
+        path: "",
+        component: () => import(`../page/system/Message.vue`),
       },
     ]
   },

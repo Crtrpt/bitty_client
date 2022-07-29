@@ -1,15 +1,13 @@
 <template>
   
-    <div class="py-3 ">
-        <div class=" px-2 py-2 border-b  border-gray-200">
-            联系人信息  
-        </div>
-    </div>
+    <profile class=" h-full"></profile>
 
 </template>
 
 <script lang="ts">
+import Profile from "../my/Profile.vue";
 export default {
     name: "ContactProfile",
+    components: { Profile }
 };
 </script>

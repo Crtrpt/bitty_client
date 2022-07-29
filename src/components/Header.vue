@@ -1,9 +1,16 @@
 <template>
   <div class="flex flex-col text-gray-500   justify-center  items-center w-20  bg-gray-200">
-    <div class="rounded-full bg-blue-500   w-8 h-8  p-5 m-5"  @click="() => {
-            this.$router.push({ path: '/user/profile' });
+    <div class="rounded-full bg-blue-500    p-5 m-5"
+    
+    :style="{
+        backgroundImage: 'url(https://api.multiavatar.com/Starcrasher.png)',
+        backgroundSize: 'cover'
+        }"
+
+    @click="() => {
+            this.$router.push({ path: '/my/profile' });
           }">
-        <img class="  w-full h-full" src="https://api.multiavatar.com/Starcrasher.png"   />
+
     </div>
     <a class="h-10" 
         @click="() => {
@@ -27,7 +34,15 @@
           <font-awesome-icon class="w-5 cursor-pointer" icon="arrow-right-from-bracket" />
       </a>
        <a class="h-10">
-          <font-awesome-icon class="w-5 cursor-pointer" icon="bars" />
+          <font-awesome-icon class="w-5 cursor-pointer" icon="bars"  
+          @click="() => {
+            this.$router.push({ path: '/setting' });
+        }"/>
+      </a>
+      <a class="h-10">
+          <font-awesome-icon class="w-5 cursor-pointer" icon="bell"  @click="() => {
+            this.$router.push({ path: '/message' });
+        }"/>
       </a>
        <a class="h-10" @click="() => {
             this.$router.push({ path: '/search' });

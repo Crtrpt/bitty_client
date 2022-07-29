@@ -5,15 +5,16 @@
             }">
 
         <div class="cell p-2  flex flex-grow  cursor-pointer">
-            <div class="rounded-full bg-blue-500   w-8 h-8  "  @click="() => {
+            <div class="rounded-full bg-blue-500   w-8 h-8   flex-grow-0 flex-shrink-0"  @click="() => {
                 $router.push({ path: '/user/profile' });
             }">
-                <img class="  w-full h-full" src="https://api.multiavatar.com/Starcrasher.png"   />
+                <img class="  w-full h-full" :src='"https://api.multiavatar.com/"+i.name+".png"'   />
             </div>
 
 
-            <div class="mx-2 flex-grow">
-                    <div>{{i.name}}</div>
+            <div class="mx-2 flex-grow overflow-hidden flex-shrink ">
+                    <div class=" text-base">{{i.name}}</div>
+                    <div class=" text-xs  text-gray-400  whitespace-nowrap    w-0 ">{{i.lastmsg}}</div>
             </div>
             
         </div>
@@ -29,20 +30,29 @@ export default {
         return {
             list:[
                 {
-                    id:111,
-                    name:"111"
+                    id:1,
+                    name:"苏轼",
+                    lastmsg:"十年生死两茫茫，不思量，自难忘。"
                 },
                 {
-                    id:222,
-                    name:"111"
+                    id:2,
+                    name:"杜甫",
+                     lastmsg:"国破山河在，城春草木深。"
                 },
                 {
-                    id:333,
-                    name:"111"
+                    id:3,
+                    name:"李白",
+                     lastmsg:"君不见黄河之水天上来，奔流到海不复回。"
                 },
                 {
-                    id:444,
-                    name:"111"
+                    id:4,
+                    name:"白居易",
+                    lastmsg:"汉皇重色思倾国，御宇多年求不得。"
+                },
+                {
+                    id:5,
+                    name:"王维",
+                    lastmsg:"空山新雨后，天气晚来秋。"
                 }
             ]
         }
