@@ -87,11 +87,24 @@ const route = [
   {
     path: "/message",
     component: AppLayout,
+    redirect:"/message/inbox/unreadMessage",
     children: [
       {
-        path: "",
-        component: () => import(`../page/system/Message.vue`),
+        path: "inbox",
+        name:"inbox",
+        component: () => import(`../page/message/Inbox.vue`),
+        children: [
+          {
+            path: "allMessage",
+            component: () => import(`../page/message/AllMessage.vue`),
+          },
+          {
+            path: "unreadMessage",
+            component: () => import(`../page/message/UnreadMessage.vue`),
+          },
+        ]
       },
+      
     ]
   },
   {
