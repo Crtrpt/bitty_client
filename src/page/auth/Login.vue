@@ -5,6 +5,7 @@
         <span class="text-gray-700"> {{ $t("account") }}</span>
         <input
           type="text"
+          v-model="form.account"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
         />
@@ -13,6 +14,7 @@
         <span class="text-gray-700">{{ $t("password") }}</span>
         <input
           type="password"
+          v-model="form.password"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
       </label>
@@ -34,6 +36,7 @@
 import { mapState } from "pinia";
 import { appStore } from "../../store/appStore";
 import { mapActions } from "pinia";
+import api from '../../api/api';
 
 export default {
   name: "Login",
@@ -46,15 +49,26 @@ export default {
   methods: {
     ...mapActions(appStore, ["setLogin"]),
     login() {
-      this.setLogin(true);
-      this.$router.push({
-        name: "home",
-      });
+      let _this=this;
+      api.post("auth/login",this.form).then((res)=>{
+        if(res.code==0){
+          _this.setLogin(res.data);
+          _this.$router.push({
+            path:"my/profile"
+          });
+        }
+      })
+      
     },
   },
   mounted() {},
   data() {
-    return {};
+    return {
+      form:{
+        account:"",
+        password:""
+      }
+    };
   },
 };
 </script>

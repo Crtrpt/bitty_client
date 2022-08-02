@@ -1,27 +1,26 @@
 <template>
   <div class="flex flex-col text-gray-500   justify-center  items-center w-20  bg-gray-200">
+ 
     <div class="rounded-full bg-blue-500    p-5 m-5"
     
     :style="{
-        backgroundImage: 'url(https://api.multiavatar.com/Starcrasher.png)',
+        backgroundImage: 'url('  + store.userInfo.user.avatar + ')',
         backgroundSize: 'cover'
         }"
-
     @click="() => {
-            this.$router.push({ path: '/my/profile' });
+            $router.push({ path: '/my/profile' });
           }">
-
     </div>
     <a class="h-10" 
         @click="() => {
-            this.$router.push({ path: '/chat' });
+            $router.push({ path: '/chat' });
         }"
     >
           <font-awesome-icon class="w-5 cursor-pointer hover:text-gray-800" icon="message" />
     </a>
      <a class="h-10" 
        @click="() => {
-            this.$router.push({ path: '/contact' });
+            $router.push({ path: '/contact' });
         }"
      >
           <font-awesome-icon class="w-5 cursor-pointer" icon="user-group" />
@@ -29,23 +28,23 @@
     <div class="flex flex-col-reverse flex-grow items-center "> 
      
        <a class="h-10" @click="() => {
-            this.$router.push({ path: '/login' });
+            $router.push({ path: '/login' });
         }">
           <font-awesome-icon class="w-5 cursor-pointer" icon="arrow-right-from-bracket" />
       </a>
        <a class="h-10">
           <font-awesome-icon class="w-5 cursor-pointer" icon="bars"  
           @click="() => {
-            this.$router.push({ path: '/setting' });
+            $router.push({ path: '/setting' });
         }"/>
       </a>
       <a class="h-10">
           <font-awesome-icon class="w-5 cursor-pointer" icon="bell"  @click="() => {
-            this.$router.push({ path: '/message' });
+            $router.push({ path: '/message' });
         }"/>
       </a>
        <a class="h-10" @click="() => {
-            this.$router.push({ path: '/search' });
+            $router.push({ path: '/search' });
         }">
           <font-awesome-icon class="w-5 cursor-pointer" icon="search" />
       </a>
@@ -55,7 +54,6 @@
 <script lang="ts">
 import Menu from "./Menu.vue";
 import Avatar from "./Avatar.vue";
-import { mapState } from "pinia";
 import { appStore } from "../store/appStore";
 import { mapActions } from "pinia";
 
@@ -68,9 +66,10 @@ export default {
     };
   },
   setup() {
-    const appstore = appStore();
+    const store = appStore();
+   
     return {
-      appStore,
+      store,
     };
   },
   methods: {

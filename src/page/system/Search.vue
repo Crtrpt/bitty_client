@@ -23,7 +23,7 @@
                                      {{i.name}}
                                     </div>
                                     <div class=" text-sm text-gray-500 whitespace-nowrap">
-                                         {{i.statu}}
+                                         {{i.status}}
                                     </div>
                                 </div>
                             </div>
@@ -55,37 +55,37 @@ export default {
                     id:1,
                     name:"苏轼",
                     lastmsg:"十年生死两茫茫，不思量，自难忘。",
-                    statu:"十年生死两茫茫，不思量，自难忘。",
+                    status:"十年生死两茫茫，不思量，自难忘。",
                 },
                 {
                     id:2,
                     name:"杜甫",
                      lastmsg:"国破山河在，城春草木深。",
-                     statu:"国破山河在，城春草木深。",
+                     status:"国破山河在，城春草木深。",
                 },
                 {
                     id:3,
                     name:"李白",
                      lastmsg:"君不见黄河之水天上来，奔流到海不复回。",
-                     statu:"君不见黄河之水天上来，奔流到海不复回。",
+                     status:"君不见黄河之水天上来，奔流到海不复回。",
                 },
                 {
                     id:4,
                     name:"白居易",
                     lastmsg:"汉皇重色思倾国，御宇多年求不得。",
-                    statu:"汉皇重色思倾国，御宇多年求不得。"
+                    status:"汉皇重色思倾国，御宇多年求不得。"
                 },
                 {
                     id:5,
                     name:"王维",
                     lastmsg:"空山新雨后，天气晚来秋。",
-                    statu:"空山新雨后，天气晚来秋。"
+                    status:"空山新雨后，天气晚来秋。"
                 },
                 {
                     id:6,
                     name:"杜牧",
                     lastmsg:"清明时节雨纷纷，路上行人欲断魂。",
-                    statu:"借问酒家何处有？牧童遥指杏花村。"
+                    status:"借问酒家何处有？牧童遥指杏花村。"
 
                 }
             ]

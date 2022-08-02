@@ -13,8 +13,14 @@ const initMenu = (menu: any, parent: any) => {
 };
 export const appStore = defineStore("appStore", {
   state: () => {
+    var userinfo=null;
+    try{
+      userinfo=JSON.parse(window.localStorage.getItem("auth")!)
+    }catch(e){
+
+    }
+
     return {
-      isLogin: JSON.parse(window.localStorage.getItem("auth")!),
       menu: [
         {
           name: "仪表盘",
@@ -51,16 +57,16 @@ export const appStore = defineStore("appStore", {
         },
       ],
       //用户信息
-      userInfo:{
-
-      },
+      userInfo:userinfo,
       //系统配置
       config:{
         allSearch:true,
         allAnonChat:false,
         addFriendMode:0,
         addFriendQuestion:"我的名字",
-        addFriendAnswer:"苏轼"
+        addFriendAnswer:"苏轼",
+        //允许多个账号同时登陆
+        allMultipleAccountsLogin:true
       },
       //联系人列表
       contactList:[
@@ -96,51 +102,74 @@ export const appStore = defineStore("appStore", {
         {
           id: 1,
           name: "苏轼",
+          avatar:"https://api.multiavatar.com/1.png",
           lastmsg: "十年生死两茫茫，不思量，自难忘。",
-          time:"刚刚"
+          time:"刚刚",
+          member:[
+            {
+              id:1,
+              user:{
+                name: "苏轼",
+                avatar:"https://api.multiavatar.com/1.png",
+              }
+            },
+            {
+              id:2,
+              user:{
+                name: "111",
+                avatar:"https://api.multiavatar.com/1.png",
+              }
+            }
+          ],
+          chat:{
+            sn:0,
+            draft:"发送给苏轼?",
+            list:[
+                {
+                  id: 1,
+                  name: "苏轼",
+                  msg: "十年生死两茫茫，不思量，自难忘。",
+                  time:"刚刚"
+              },
+            ]
+          }
       },
       {
           id: 2,
           name: "杜甫",
+          avatar:"https://api.multiavatar.com/2.png",
           lastmsg: "国破山河在，城春草木深。",
-          time:"刚刚"
+          time:"刚刚",
+          chat:{
+            draft:"发送给杜甫?",
+            list:[
+              {
+                id: 1,
+                name: "杜甫",
+                msg: "十年生死两茫茫，不思量，自难忘。",
+                time:"刚刚"
+            },
+            {
+                id: 2,
+                name: "杜甫",
+                msg: "国破山河在，城春草木深。",
+                time:"刚刚"
+            },
+            
+            ]
+          }
       },
       {
           id: 3,
           name: "李白",
+          avatar:"https://api.multiavatar.com/3.png",
           lastmsg: "君不见黄河之水天上来，奔流到海不复回。",
-          time:"刚刚"
-      },
-      {
-          id: 4,
-          name: "白居易",
-          lastmsg: "汉皇重色思倾国，御宇多年求不得。",
-          time:"刚刚"
-      },
-      {
-          id: 5,
-          name: "王维",
-          lastmsg: "空山新雨后，天气晚来秋。",
           time:"刚刚",
+          chat:{
+            draft:"发送给李白?",
+            list:[],
+          }
       },
-       {
-          id: 6,
-          name: "王维",
-          lastmsg: "空山新雨后，天气晚来秋。",
-          time:"刚刚",
-      },
-       {
-          id: 7,
-          name: "王维",
-          lastmsg: "空山新雨后，天气晚来秋。",
-          time:"刚刚",
-      },
-       {
-          id: 8,
-          name: "王维",
-          lastmsg: "空山新雨后，天气晚来秋。",
-          time:"刚刚",
-      }
       ],
       curChat:null,
       menuPath: [],
@@ -169,9 +198,34 @@ export const appStore = defineStore("appStore", {
   },
 
   actions: {
+    setChat(payload:any){
+      console.log(payload);
+      this.curChat=payload;
+    },
+    send(){
+      var payload={
+        msg:this!.curChat!.chat!.draft||"",
+        fromId:this.userInfo.id,
+        sendId:this.curChat.id,
+        sn:(this.curChat.chat.sn)++,
+        sendTime:Date.now (),
+        serverTime:Date.now(),
+        sender:this.userInfo,
+      }
+      //sync
+      this.curChat.chat.list.push(payload);
+      this.curChat.chat.draft="";
+    },
+    setContact(payload:any){
+      this.curContact=payload
+    },
     setLogin(payload: any) {
-      this.isLogin = payload;
+      this.isLogin =true;
+      this.userInfo = payload;
       window.localStorage.setItem("auth", JSON.stringify(payload));
+    },
+    syncUserInfo(){
+      window.localStorage.setItem("auth",JSON.stringify(this.userInfo));
     },
     setLogout() {
       console.log("logout");

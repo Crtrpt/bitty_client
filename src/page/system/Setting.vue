@@ -45,6 +45,15 @@
                       <input v-model="store.config.addFriendAnswer"  class="p-1 m-1 border" placeholder="答案"/>
                 </div>
               </div>
+
+              <div class=" border p-4 my-4 flex flex-col  w-1/2 rounded">
+                <div>
+                  允许多个账号同时登陆
+                </div>
+                <div class="action mt-5 flex    ">
+                      <input v-model="store.config.allMultipleAccountsLogin" type="checkbox" />
+                </div>
+              </div>
             
         </div>
     </div>

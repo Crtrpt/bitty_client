@@ -1,10 +1,12 @@
 <template>
+
   <div class="container m-auto flex items-center justify-center h-screen">
     <div class="w-1/4">
       <label class="block">
         <span class="text-gray-700"> {{ $t("account") }}</span>
         <input
           type="text"
+          v-model="form.account"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
         />
@@ -13,13 +15,22 @@
         <span class="text-gray-700">{{ $t("password") }}</span>
         <input
           type="password"
+            v-model="form.password"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        />
+      </label>
+       <label class="block">
+        <span class="text-gray-700">{{ $t("email") }}</span>
+        <input
+        v-model="form.email"
+          type="email"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
       </label>
       <div class="block">
         <div class="flex mt-2">
           <div
-            @click="login"
+            @click="signup"
             class="border p-2 px-5 rounded bg-blue-600 hover:bg-blue-700 text-white border-gray-300 hover:border-indigo-300 cursor-pointer"
           >
             {{ $t("signup_btn") }}
@@ -31,18 +42,33 @@
 </template>
 
 <script lang="ts">
+import api from '../../api/api';
 export default {
   name: "Signup",
   methods: {
-    login() {
-      this.$router.push({
-        name: "home",
-      });
-    },
+   
+     signup(){
+       let _this=this;
+      api.post("auth/signup",this.form).then((res)=>{
+        if(res.code==0){
+          _this.$router.push({
+            name:"login"
+          });
+        }
+      })
+    }
   },
-  mounted() {},
+  mounted() {
+   
+  },
   data() {
-    return {};
+    return {
+      form:{
+        account:"",
+        password:"",
+        email:"",
+      }
+    };
   },
 };
 </script>

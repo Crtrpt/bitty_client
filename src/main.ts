@@ -55,7 +55,7 @@ componentsList.forEach((component) => {
 });
 
 const store = appStore();
-console.log(store.isLogin);
+
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -63,7 +63,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, form) => {
-  if (!store.isLogin && to.name !== "login") {
+  if (!store.userInfo && to.name !== "login") {
     return { name: "login" };
   }
 });
