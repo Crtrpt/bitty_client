@@ -15,7 +15,7 @@
             </div>
             <div class="mx-2 flex-grow overflow-hidden flex-shrink ">
                     <div class=" text-base">{{i.user?.nick_name}}</div>
-                    <div class=" text-xs  text-gray-400  whitespace-nowrap    w-0 ">{{i.user?.status}}</div> 
+                    <div class=" text-xs  text-gray-400  whitespace-nowrap    w-0  h-4 ">{{i.user?.status||''}}</div> 
             </div>
         </div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <profile class=" h-full" :data="data"></profile>
+    <profile class=" h-full" :data="data" :session="session" ></profile>
 </template>
 
 <script lang="ts">
@@ -8,11 +8,8 @@ import api from "../../api/api";
 export default {
     data(){
         return  {
-            data:{
-                avatar:"",
-                name:"",
-                status:""
-            }
+            data:{},
+            session:{}
         }
     },
     name: "ContactProfile",
@@ -25,10 +22,10 @@ export default {
         }
     },
     methods:{
-        fetchUserInfo(){
-            api.get("user/profile",{user_id:this.$route.params.id}).then((res)=>{
-            this.data=res.data
-        })
+            fetchUserInfo(){
+                api.get("user/profile",{user_id:this.$route.params.id}).then((res)=>{
+                this.data=res.data
+            })
         }
     },
     created(){

@@ -22,7 +22,7 @@
                         </template>
                          <template v-if="!editale">
                             <div class="text-xl py-1 text-gray-500 outline-none"> {{store.userInfo.user.nick_name}}</div>
-                            <div class="text-sm text-gray-400 outline-none  rounded  py-1" @click="()=>editale=true">
+                            <div class="text-sm text-gray-400 outline-none  rounded  py-1  w-80" @click="()=>editale=true">
                                 {{store.userInfo.user.status}}
                             </div>
                              <div class="flex">

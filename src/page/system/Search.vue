@@ -1,11 +1,11 @@
 <template>
     <div class=" container mx-auto">
         <div class="  text-3xl mt-10 px-4 ">搜索</div>
-        <div class="w-full flex items-center justify-center  py-4">
-            <div class="border  rounded-full hover:shadow-inner">
-                <input v-model="keywords"   placeholder="输入你要搜索的内容"  class=" outline-none px-2 m-2  w-80"/>
+        <div class="w-full flex items-center justify-center  pl-4">
+            <div class="border  rounded-l-full hover:shadow-inner border-r-0">
+                <input v-model="keywords" @keyup.enter="search"   placeholder="输入你要搜索的内容"  class=" outline-none px-2 m-2  w-80"/>
             </div>
-            <div class=" border  rounded-full px-4 py-2 mx-4 bg-blue-500  text-white cursor-pointer hover:shadow" @click="search">
+            <div class=" border  rounded-r-full  px-4 py-2 mr-4 bg-blue-500  text-white cursor-pointer hover:shadow" @click="search">
                 搜索
                 <font-awesome-icon class="w-5 cursor-pointer" icon="search" />
             </div>
@@ -31,7 +31,7 @@
                                 <!-- <div class="   rounded cursor-pointer    whitespace-nowrap  px-2 py-1  mr-2 bg-blue-400 ">
                                     发起聊天
                                 </div> -->
-                                <div class="   rounded cursor-pointer    whitespace-nowrap px-2 py-1 mx-2 bg-blue-400" @click="addEndpoint(i)">
+                                <div class="   rounded cursor-pointer    whitespace-nowrap px-2 py-1 mr-2 bg-blue-400" @click="addEndpoint(i)">
                                     加为好友
                                 </div> 
                               
@@ -70,7 +70,11 @@ export default {
             user_id:_this.store.userInfo.user.user_id,
             target_id:u.user_id,
         }).then(res=>{
-            console.log(res);
+            if(res.code==0){
+                alert("已经发送好友申请")
+            }else{
+                alert(res.msg)
+            }
         })
     }
   },
