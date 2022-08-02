@@ -219,6 +219,9 @@ export const appStore = defineStore("appStore", {
     setContact(payload:any){
       this.curContact=payload
     },
+    setContactList(payload:any){
+      this.contactList=payload;
+    },
     setLogin(payload: any) {
       this.isLogin =true;
       this.userInfo = payload;

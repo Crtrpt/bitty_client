@@ -16,11 +16,24 @@ export default {
         }
     },
     name: "ContactProfile",
-    created(){
-        console.log(this.$route.params.id)
-        api.get("user/profile",{id:this.$route.params.id}).then((res)=>{
-            this.data=res
+    watch:{
+        "$router":{
+            deep:true,
+            handler(n,o){
+                this.fetchUserInfo()
+            }
+        }
+    },
+    methods:{
+        fetchUserInfo(){
+            api.get("user/profile",{user_id:this.$route.params.id}).then((res)=>{
+            this.data=res.data
         })
+        }
+    },
+    created(){
+       this.fetchUserInfo()
+        
     },
     components: { Profile }
 };

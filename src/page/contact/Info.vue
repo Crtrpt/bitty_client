@@ -1,11 +1,9 @@
 <template>
-    <div class="flex-grow">
-        <RouterView></RouterView>
-    </div>
+    <RouterView class="flex-grow"></RouterView>
 </template>
 
 <script lang="ts">
 export default {
-  name: "ChatSession",
+  name: "ContactInfo",
 };
 </script>

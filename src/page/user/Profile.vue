@@ -12,7 +12,7 @@
                     </div>
                     <div class="ml-10">
                         <div class=" text-xl">
-                        {{data.name||''}}
+                        {{data.nick_name||''}}
                         </div>
                         <div class=" text-sm text-gray-500">
                              {{data.status||''}}
@@ -21,7 +21,7 @@
                 </div>
                 <div class="action mt-5 flex text-xs  text-white">
                     <div class="   rounded cursor-pointer  whitespace-nowrap   px-10 py-2 bg-blue-400 " @click="()=>{
-                         $router.push({ path: '/chat/'+i.id+'/chat' });
+                         $router.push({ path: '/chat/'+i.user_id+'/chat' });
                     }">
                         发起聊天
                     </div>

@@ -3,7 +3,11 @@ export default class api {
     static headers={"Content-Type":"application/json","Platform":"vue","Version":"0.0.1"}
 
     static get(path:string,query:Object):Promise<any>{
-        return fetch(api.url+path+"?id=MTU0OTM2NTA5ODc2NDU3MDYyNA==",{
+        var queryStr=Object.keys(query)
+        .map(key => `${key}=${query[key]}`)
+        .join('&');
+       
+        return fetch(api.url+path+"?"+queryStr,{
             "method":"GET",
             headers:api.headers
         }).then((res)=>{
