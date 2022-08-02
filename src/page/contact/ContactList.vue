@@ -1,10 +1,12 @@
 <template>
-    <div class=" w-60 py-5 bg-gray-100 ">
-        <div v-for=" i in list" :key="i" class="flex  hover:bg-gray-200"  @click="()=>{
+
+    <div class=" w-60  bg-gray-100 border-r  ">
+        <ContactSearch :data="keywords" class=" h-12"></ContactSearch>
+        <div v-for=" i in store.contactList" :key="i" class="flex  hover:bg-gray-200"  @click="()=>{
                 $router.push({ path: '/contact/'+i.id+'/profile' });
             }">
 
-       <div class="cell p-2  flex flex-grow  cursor-pointer">
+       <div class="cell p-2  flex flex-grow  cursor-pointer justify-center items-center">
             <div class="rounded-full bg-blue-500   w-8 h-8   flex-grow-0 flex-shrink-0"  @click="() => {
                 $router.push({ path: '/user/profile' });
             }">
@@ -23,39 +25,19 @@
 </template>
 
 <script lang="ts">
-
+import ContactSearch from "./ContactSearch.vue"
+import { appStore } from '../../store/appStore';
 export default {
     name: "ContactList",
-    data(){
+    data() {
         return {
-            list:[
-                {
-                    id:1,
-                    name:"苏轼",
-                    lastmsg:"十年生死两茫茫，不思量，自难忘。"
-                },
-                {
-                    id:2,
-                    name:"杜甫",
-                     lastmsg:"国破山河在，城春草木深。"
-                },
-                {
-                    id:3,
-                    name:"李白",
-                     lastmsg:"君不见黄河之水天上来，奔流到海不复回。"
-                },
-                {
-                    id:4,
-                    name:"白居易",
-                    lastmsg:"汉皇重色思倾国，御宇多年求不得。"
-                },
-                {
-                    id:5,
-                    name:"王维",
-                    lastmsg:"空山新雨后，天气晚来秋。"
-                }
-            ]
-        }
-    }
+            keywords:"",
+        };
+    },
+    components: { ContactSearch },
+    setup() {
+        const store = appStore()
+        return { store }
+    },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class=" container mx-auto">
-    <div class="  text-3xl my-10 ">用户信息</div>
+    <div class="  text-3xl mt-10 px-4 ">用户信息</div>
     <div class="  w-full  mx-auto flex   items-center   justify-center items-center ">
        
   

@@ -50,6 +50,99 @@ export const appStore = defineStore("appStore", {
           ],
         },
       ],
+      //用户信息
+      userInfo:{
+
+      },
+      //系统配置
+      config:{
+        allSearch:true,
+        allAnonChat:false,
+        addFriendMode:0,
+        addFriendQuestion:"我的名字",
+        addFriendAnswer:"苏轼"
+      },
+      //联系人列表
+      contactList:[
+          {
+              id: 1,
+              name: "苏轼",
+              lastmsg: "十年生死两茫茫，不思量，自难忘。"
+          },
+          {
+              id: 2,
+              name: "杜甫",
+              lastmsg: "国破山河在，城春草木深。"
+          },
+          {
+              id: 3,
+              name: "李白",
+              lastmsg: "君不见黄河之水天上来，奔流到海不复回。"
+          },
+          {
+              id: 4,
+              name: "白居易",
+              lastmsg: "汉皇重色思倾国，御宇多年求不得。"
+          },
+          {
+              id: 5,
+              name: "王维",
+              lastmsg: "空山新雨后，天气晚来秋。"
+          }
+      ],
+      curContact:null,
+      //聊天列表
+      chatList:[
+        {
+          id: 1,
+          name: "苏轼",
+          lastmsg: "十年生死两茫茫，不思量，自难忘。",
+          time:"刚刚"
+      },
+      {
+          id: 2,
+          name: "杜甫",
+          lastmsg: "国破山河在，城春草木深。",
+          time:"刚刚"
+      },
+      {
+          id: 3,
+          name: "李白",
+          lastmsg: "君不见黄河之水天上来，奔流到海不复回。",
+          time:"刚刚"
+      },
+      {
+          id: 4,
+          name: "白居易",
+          lastmsg: "汉皇重色思倾国，御宇多年求不得。",
+          time:"刚刚"
+      },
+      {
+          id: 5,
+          name: "王维",
+          lastmsg: "空山新雨后，天气晚来秋。",
+          time:"刚刚",
+      },
+       {
+          id: 6,
+          name: "王维",
+          lastmsg: "空山新雨后，天气晚来秋。",
+          time:"刚刚",
+      },
+       {
+          id: 7,
+          name: "王维",
+          lastmsg: "空山新雨后，天气晚来秋。",
+          time:"刚刚",
+      },
+       {
+          id: 8,
+          name: "王维",
+          lastmsg: "空山新雨后，天气晚来秋。",
+          time:"刚刚",
+      }
+      ],
+      curChat:null,
       menuPath: [],
       activeMenu: null,
       version: "xxx",
@@ -66,6 +159,15 @@ export const appStore = defineStore("appStore", {
       ],
     };
   },
+  getters:{
+    // contactList(state){
+    //   return state.contactList;
+    // },
+    // chatList(state){
+    //   return state.chatList;
+    // }
+  },
+
   actions: {
     setLogin(payload: any) {
       this.isLogin = payload;

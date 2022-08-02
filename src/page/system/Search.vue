@@ -1,7 +1,7 @@
 <template>
     <div class=" container mx-auto">
-        <div class="  text-3xl my-10 ">搜索</div>
-        <div class="w-full flex items-center justify-center h-1/4">
+        <div class="  text-3xl mt-10 px-4 ">搜索</div>
+        <div class="w-full flex items-center justify-center  py-4">
             <div class="border  rounded-full hover:shadow-inner">
                 <input   placeholder="输入你要搜索的内容"  class=" outline-none px-2 m-2  w-80"/>
             </div>
