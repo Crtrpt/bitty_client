@@ -13,16 +13,18 @@
                     </div>
                     <div class="ml-10 flex flex-col w-80">                        
                         <template v-if="editale">
-                            <input class="text-xl py-1 text-gray-500 outline-none border rounded my-1 p-1 border-gray-700" v-model="store.userInfo.user.nick_name" />
-                            <textarea class="text-sm text-gray-500 outline-none  rounded p-1 my-1 border-gray-700" v-model="store.userInfo.user.status" ></textarea>
+                            <input  placeholder="昵称" class="text-xl py-1 text-gray-500 outline-none border rounded my-1 p-1 border-gray-700" v-model="store.userInfo.user.nick_name" />
+                            <input  placeholder="邮箱" class="py-1 text-gray-500 outline-none border rounded my-1 p-1 border-gray-700 text-sm" v-model="store.userInfo.user.email" />
+                            <textarea placeholder="状态" class="text-sm text-gray-500 outline-none  rounded p-1 my-1 border-gray-700" v-model="store.userInfo.user.status" ></textarea>
                             <div class="flex">
-                                <div class=" text-sm  border-blue-500 cursor-pointer border  bg-blue-500 text-white px-2 " @click="saveUserInfo">保存</div>
-                                <div class=" text-sm text-blue-500 cursor-pointer border border-blue-500 px-2 mx-1" @click="()=>editale=false">取消</div>
+                                <div class="  rounded text-sm  border-blue-500 cursor-pointer border  bg-blue-500 text-white px-2 " @click="saveUserInfo">保存</div>
+                                <div class=" rounded text-sm text-blue-500 cursor-pointer border border-blue-500 px-2 mx-1" @click="()=>editale=false">取消</div>
                             </div>
                         </template>
                          <template v-if="!editale">
                             <div class="text-xl py-1 text-gray-500 outline-none"> {{store.userInfo.user.nick_name}}</div>
-                            <div class="text-sm text-gray-400 outline-none  rounded  py-1  w-80" @click="()=>editale=true">
+                             <div class="text-xs py-1 text-gray-500 outline-none"> {{store.userInfo.user.email}}</div>
+                            <div class="text-sm text-gray-400 outline-none  rounded  py-1  " @click="()=>editale=true">
                                 {{store.userInfo.user.status}}
                             </div>
                              <div class="flex">

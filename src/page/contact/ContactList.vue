@@ -1,6 +1,6 @@
 <template>
 
-    <div class=" w-60  bg-gray-100 border-r  ">
+    <div class=" w-80  bg-gray-100 border-r  ">
         <ContactSearch :data="keywords" class=" h-12"></ContactSearch>
         <div v-for=" i in store.contactList" :key="i" class="flex  hover:bg-gray-200"  @click="()=>{
                 store.setContact(i);

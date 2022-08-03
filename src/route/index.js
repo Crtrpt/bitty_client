@@ -13,6 +13,7 @@ const route = [
     path: "/",
     name:"home",
     component: AppLayout,
+   
     children:[
       {
         path: "/chat",
@@ -56,6 +57,9 @@ const route = [
   },
   {
     path: "/my",
+    meta:{
+      name:"my",
+    },
     component: AppLayout,
     children: [
       {
@@ -67,6 +71,9 @@ const route = [
   {
     path: "/search",
     component: AppLayout,
+    meta:{
+      name:"home",
+    },
     children: [
       {
         path: "",

@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-60  bg-gray-100 border-r ">
+    <div class=" w-80  bg-gray-100 border-r ">
        
         <ChatSearch :kewords="kewords" class="  h-12"></ChatSearch>
       
