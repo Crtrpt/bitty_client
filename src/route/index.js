@@ -11,29 +11,29 @@ import Page404 from "../page/Page404.vue";
 const route = [
   {
     path: "/",
-    name:"home",
+    name: "home",
     component: AppLayout,
-   
-    children:[
+
+    children: [
       {
         path: "/chat",
         component: () => import(`../page/chat/Index.vue`),
         children: [
           {
-            path: ":id",           
+            path: ":id",
             component: () => import(`../page/chat/Session.vue`),
             children: [
-                {
-                  path: "chat",           
-                  component: () => import(`../page/chat/Chat.vue`),
-                },
-                {
-                  path: "profile",           
-                  component: () => import(`../page/chat/Profile.vue`),
-                }
+              {
+                path: "chat",
+                component: () => import(`../page/chat/Chat.vue`),
+              },
+              {
+                path: "profile",
+                component: () => import(`../page/chat/Profile.vue`),
+              }
             ]
           },
-         
+
         ]
       },
       {
@@ -41,24 +41,24 @@ const route = [
         component: () => import(`../page/contact/Index.vue`),
         children: [
           {
-            path: ":id",           
+            path: ":id",
             component: () => import(`../page/contact/Info.vue`),
             children: [
-                {
-                  path: "profile",           
-                  component: () => import(`../page/contact/Profile.vue`),
-                }
+              {
+                path: "profile",
+                component: () => import(`../page/contact/Profile.vue`),
+              }
             ]
           },
-         
+
         ]
       },
     ]
   },
   {
     path: "/my",
-    meta:{
-      name:"my",
+    meta: {
+      name: "my",
     },
     component: AppLayout,
     children: [
@@ -71,8 +71,8 @@ const route = [
   {
     path: "/search",
     component: AppLayout,
-    meta:{
-      name:"home",
+    meta: {
+      name: "home",
     },
     children: [
       {
@@ -94,11 +94,11 @@ const route = [
   {
     path: "/message",
     component: AppLayout,
-    redirect:"/message/inbox/unreadMessage",
+    redirect: "/message/inbox/unreadMessage",
     children: [
       {
         path: "inbox",
-        name:"inbox",
+        name: "inbox",
         component: () => import(`../page/message/Inbox.vue`),
         children: [
           {
@@ -111,13 +111,18 @@ const route = [
           },
         ]
       },
-      
+
     ]
   },
   {
     path: "/login",
     name: "login",
     component: login,
+  },
+  {
+    path: "/agreement",
+    name: "agreement",
+    component: () => import(`../page/auth/Agreement.vue`),
   },
   {
     path: "/signup",

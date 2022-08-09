@@ -1,7 +1,7 @@
 <template>
   <div class="applayout flex flex-row grow overflow-hidden h-screen w-screen">
-    <Header class="shadow"></Header>
-    <router-view v-slot="{ Component }">
+    <Header class="hover:shadow"></Header>
+    <router-view v-slot="{ Component }" class="bg-gray-50">
       <keep-alive>
         <component :is="Component" />
       </keep-alive>
