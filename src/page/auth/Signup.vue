@@ -1,21 +1,21 @@
 <template>
   <div class="container m-auto flex items-center justify-center h-screen">
     <div class="w-80">
-      <div class="text-3xl mb-5">注册账户</div>
+      <div class="text-3xl mb-5">{{ $t("signup_account") }}</div>
       <label class="block">
         <span class="text-gray-700"> {{ $t("account") }}</span>
         <input
           type="text"
           v-model="form.account"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          placeholder="账户名称"
+          :placeholder="$t('account_placeholder')"
         />
       </label>
       <label class="block">
         <span class="text-gray-700">{{ $t("password") }}</span>
         <input
           type="password"
-          placeholder="密码"
+          :placeholder="$t('password_placeholder')"
           v-model="form.password"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
         />
@@ -26,7 +26,7 @@
           v-model="form.email"
           type="email"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          placeholder="输入登录邮箱"
+          :placeholder="$t('email_placeholder')"
         />
       </label>
       <div class="block">
@@ -34,10 +34,9 @@
           <input type="checkbox" v-model="form.agreement" />
 
           <div class="ml-4">
-            我同意
-
-            <router-link :to="{ name: 'agreement' }" class="underline"
-              >许可协议</router-link
+            {{ $t("i_agree") }}
+            <router-link :to="{ name: 'agreement' }" class="underline">
+              {{ $t("agreement") }}</router-link
             >
           </div>
         </div>
@@ -61,7 +60,7 @@
             "
             class="border ml-2 p-2 px-5 rounded text-blue-600 hover:text-blue-700 bg-white border-gray-300 hover:border-indigo-300 cursor-pointer"
           >
-            去登陆
+            {{ $t("go_login") }}
           </div>
         </div>
       </div>

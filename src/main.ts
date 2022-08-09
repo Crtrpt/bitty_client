@@ -22,8 +22,8 @@ library.add(fas);
 const app = createApp(BittyVue);
 
 const i18n = createI18n({
-  locale: "zh",
-  fallbackLocale: "zh",
+  locale: "en",
+  fallbackLocale: "en",
   messages: message,
 });
 
@@ -56,7 +56,6 @@ componentsList.forEach((component) => {
 
 const store = appStore();
 
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes: route,
@@ -70,6 +69,6 @@ router.beforeEach((to, form) => {
 
 app.use(router);
 
-app.directive("confirm",confirm)
-app.directive("tooltip",tooltip)
+app.directive("confirm", confirm);
+app.directive("tooltip", tooltip);
 app.mount("#app");

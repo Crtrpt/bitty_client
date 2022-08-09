@@ -1,6 +1,8 @@
 <template>
   <div class="container mx-auto">
-    <div class="text-3xl mt-10 px-4 mb-5">搜索</div>
+    <div class="text-3xl mt-10 px-4 mb-5">
+      {{ $t("search") }}
+    </div>
     <div class="w-full flex items-center justify-center pb-4">
       <div class="border rounded-l-full hover:shadow-inner border-r-0">
         <input
@@ -14,7 +16,7 @@
         class="border rounded-r-full px-4 py-2 bg-blue-500 text-white cursor-pointer hover:shadow"
         @click="search"
       >
-        搜索
+        {{ $t("search") }}
         <font-awesome-icon class="w-5 cursor-pointer" icon="search" />
       </div>
     </div>

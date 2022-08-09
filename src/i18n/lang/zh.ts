@@ -11,6 +11,10 @@ const zh = {
   logout: "退出",
   email: "邮箱",
   systemConfig: "系统设置",
+  search: "搜索",
+  search_text: "输入关键字来搜索",
+  i_agree: "我同意",
+  agreement: "许可协议",
 };
 
 export default zh;

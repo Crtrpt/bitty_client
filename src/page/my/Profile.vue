@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="text-3xl mt-10 px-4 mb-5">我的信息</div>
+    <div class="text-3xl mt-10 px-4 mb-5">{{ $t("profile") }}</div>
     <div class="w-full mx-auto flex justify-center items-center px-4">
       <div class="flex flex-col">
         <div class="flex items-start">

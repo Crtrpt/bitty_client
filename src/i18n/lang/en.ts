@@ -10,6 +10,17 @@ const en = {
   setting: "Setting",
   logout: "Logout",
   systemConfig: "System Config",
+  search: "Search",
+  search_text: "Enter a keyword to search",
+  signup_account: "Sign Account",
+  login_account: "Login Account",
+  go_signup: "Go Signup",
+  go_login: "Go Login",
+  account_placeholder: "enter your account",
+  password_placeholder: "enter your password",
+  email_placeholder: "enter your password",
+  agreement: "the license agreement",
+  i_agree: "I agree to",
 };
 
 export default en;
