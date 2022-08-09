@@ -9,7 +9,8 @@ const zh = {
   profile: "个人信息",
   setting: "系统设置",
   logout: "退出",
-  email:"邮箱"
+  email: "邮箱",
+  systemConfig: "系统设置",
 };
 
 export default zh;

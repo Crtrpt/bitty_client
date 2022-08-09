@@ -9,6 +9,7 @@ const en = {
   profile: "Profile",
   setting: "Setting",
   logout: "Logout",
+  systemConfig: "System Config",
 };
 
 export default en;

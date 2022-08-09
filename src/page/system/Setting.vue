@@ -1,12 +1,14 @@
 <template>
-  <div class="container mx-auto">
-    <div class="flex items-baseline">
-      <div class="text-3xl mt-10 px-4">系统设置</div>
+  <div class="container mx-auto flex flex-col">
+    <div class="flex items-baseline sticky">
+      <div class="text-3xl mt-10 px-4 pb-5 w-full">
+        {{ $t("systemConfig") }}
+      </div>
       <!-- <div class="  text-xl my-10 mx-1 ">消息</div>
             <div class="  text-xl my-10 mx-1">隐私</div>
             <div class="  text-xl my-10 mx-1">账号</div> -->
     </div>
-    <div class="px-4">
+    <div class="px-4 flex-grow overflow-auto">
       <div class="border p-4 my-4 flex flex-col md:w-1/2 rounded">
         <div>是否可以被搜索</div>
         <div class="action mt-5 flex">
@@ -55,6 +57,17 @@
           />
         </div>
       </div>
+
+      <div class="border p-4 my-4 flex flex-col md:w-1/2 rounded">
+        <div>使用语言</div>
+        <div class="action mt-5 flex">
+          <select @change="changeLanguage" v-model="store.config.language">
+            <option v-for="l in languageList" :key="l" :value="l.code">
+              {{ l.name }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -67,8 +80,24 @@ export default {
     const store = appStore();
     return { store };
   },
+  methods: {
+    changeLanguage(i) {
+      this.$i18n.locale = this.store.config.language;
+    },
+  },
   data() {
-    return {};
+    return {
+      languageList: [
+        {
+          code: "en",
+          name: "English",
+        },
+        {
+          code: "zh",
+          name: "中文",
+        },
+      ],
+    };
   },
 };
 </script>

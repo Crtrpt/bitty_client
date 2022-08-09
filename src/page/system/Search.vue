@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <div class="text-3xl mt-10 px-4 mb-5">搜索</div>
-    <div class="w-full flex items-center justify-center">
+    <div class="w-full flex items-center justify-center pb-4">
       <div class="border rounded-l-full hover:shadow-inner border-r-0">
         <input
           v-model="keywords"

@@ -13,12 +13,10 @@ const initMenu = (menu: any, parent: any) => {
 };
 export const appStore = defineStore("appStore", {
   state: () => {
-    var userinfo=null;
-    try{
-      userinfo=JSON.parse(window.localStorage.getItem("auth")!)
-    }catch(e){
-
-    }
+    var userinfo = null;
+    try {
+      userinfo = JSON.parse(window.localStorage.getItem("auth")!);
+    } catch (e) {}
 
     return {
       menu: [
@@ -57,121 +55,121 @@ export const appStore = defineStore("appStore", {
         },
       ],
       //用户信息
-      userInfo:userinfo,
+      userInfo: userinfo,
       //系统配置
-      config:{
-        allSearch:true,
-        allAnonChat:false,
-        addFriendMode:0,
-        addFriendQuestion:"我的名字",
-        addFriendAnswer:"苏轼",
+      config: {
+        allSearch: true,
+        allAnonChat: false,
+        addFriendMode: 0,
+        addFriendQuestion: "我的名字",
+        addFriendAnswer: "苏轼",
         //允许多个账号同时登陆
-        allMultipleAccountsLogin:true
+        allMultipleAccountsLogin: true,
+        language: "en",
       },
       //联系人列表
-      contactList:[
-          {
-              id: 1,
-              name: "苏轼",
-              lastmsg: "十年生死两茫茫，不思量，自难忘。"
-          },
-          {
-              id: 2,
-              name: "杜甫",
-              lastmsg: "国破山河在，城春草木深。"
-          },
-          {
-              id: 3,
-              name: "李白",
-              lastmsg: "君不见黄河之水天上来，奔流到海不复回。"
-          },
-          {
-              id: 4,
-              name: "白居易",
-              lastmsg: "汉皇重色思倾国，御宇多年求不得。"
-          },
-          {
-              id: 5,
-              name: "王维",
-              lastmsg: "空山新雨后，天气晚来秋。"
-          }
-      ],
-      curContact:null,
-      //聊天列表
-      chatList:[
+      contactList: [
         {
           id: 1,
           name: "苏轼",
-          avatar:"https://api.multiavatar.com/1.png",
           lastmsg: "十年生死两茫茫，不思量，自难忘。",
-          time:"刚刚",
-          member:[
-            {
-              id:1,
-              user:{
-                name: "苏轼",
-                avatar:"https://api.multiavatar.com/1.png",
-              }
-            },
-            {
-              id:2,
-              user:{
-                name: "111",
-                avatar:"https://api.multiavatar.com/1.png",
-              }
-            }
-          ],
-          chat:{
-            sn:0,
-            draft:"发送给苏轼?",
-            list:[
-                {
-                  id: 1,
-                  name: "苏轼",
-                  msg: "十年生死两茫茫，不思量，自难忘。",
-                  time:"刚刚"
-              },
-            ]
-          }
-      },
-      {
+        },
+        {
           id: 2,
           name: "杜甫",
-          avatar:"https://api.multiavatar.com/2.png",
           lastmsg: "国破山河在，城春草木深。",
-          time:"刚刚",
-          chat:{
-            draft:"发送给杜甫?",
-            list:[
+        },
+        {
+          id: 3,
+          name: "李白",
+          lastmsg: "君不见黄河之水天上来，奔流到海不复回。",
+        },
+        {
+          id: 4,
+          name: "白居易",
+          lastmsg: "汉皇重色思倾国，御宇多年求不得。",
+        },
+        {
+          id: 5,
+          name: "王维",
+          lastmsg: "空山新雨后，天气晚来秋。",
+        },
+      ],
+      curContact: null,
+      //聊天列表
+      chatList: [
+        {
+          id: 1,
+          name: "苏轼",
+          avatar: "https://api.multiavatar.com/1.png",
+          lastmsg: "十年生死两茫茫，不思量，自难忘。",
+          time: "刚刚",
+          member: [
+            {
+              id: 1,
+              user: {
+                name: "苏轼",
+                avatar: "https://api.multiavatar.com/1.png",
+              },
+            },
+            {
+              id: 2,
+              user: {
+                name: "111",
+                avatar: "https://api.multiavatar.com/1.png",
+              },
+            },
+          ],
+          chat: {
+            sn: 0,
+            draft: "发送给苏轼?",
+            list: [
+              {
+                id: 1,
+                name: "苏轼",
+                msg: "十年生死两茫茫，不思量，自难忘。",
+                time: "刚刚",
+              },
+            ],
+          },
+        },
+        {
+          id: 2,
+          name: "杜甫",
+          avatar: "https://api.multiavatar.com/2.png",
+          lastmsg: "国破山河在，城春草木深。",
+          time: "刚刚",
+          chat: {
+            draft: "发送给杜甫?",
+            list: [
               {
                 id: 1,
                 name: "杜甫",
                 msg: "十年生死两茫茫，不思量，自难忘。",
-                time:"刚刚"
-            },
-            {
+                time: "刚刚",
+              },
+              {
                 id: 2,
                 name: "杜甫",
                 msg: "国破山河在，城春草木深。",
-                time:"刚刚"
-            },
-            
-            ]
-          }
-      },
-      {
+                time: "刚刚",
+              },
+            ],
+          },
+        },
+        {
           id: 3,
           name: "李白",
-          avatar:"https://api.multiavatar.com/3.png",
+          avatar: "https://api.multiavatar.com/3.png",
           lastmsg: "君不见黄河之水天上来，奔流到海不复回。",
-          time:"刚刚",
-          chat:{
-            draft:"发送给李白?",
-            list:[],
-          }
-      },
+          time: "刚刚",
+          chat: {
+            draft: "发送给李白?",
+            list: [],
+          },
+        },
       ],
-      curChat:null,
+      curChat: null,
       menuPath: [],
       activeMenu: null,
       version: "xxx",
@@ -188,7 +186,7 @@ export const appStore = defineStore("appStore", {
       ],
     };
   },
-  getters:{
+  getters: {
     // contactList(state){
     //   return state.contactList;
     // },
@@ -198,37 +196,37 @@ export const appStore = defineStore("appStore", {
   },
 
   actions: {
-    setChat(payload:any){
+    setChat(payload: any) {
       console.log(payload);
-      this.curChat=payload;
+      this.curChat = payload;
     },
-    send(){
-      var payload={
-        msg:this!.curChat!.chat!.draft||"",
-        fromId:this.userInfo.id,
-        sendId:this.curChat.id,
-        sn:(this.curChat.chat.sn)++,
-        sendTime:Date.now (),
-        serverTime:Date.now(),
-        sender:this.userInfo,
-      }
+    send() {
+      var payload = {
+        msg: this!.curChat!.chat!.draft || "",
+        fromId: this.userInfo.id,
+        sendId: this.curChat.id,
+        sn: this.curChat.chat.sn++,
+        sendTime: Date.now(),
+        serverTime: Date.now(),
+        sender: this.userInfo,
+      };
       //sync
       this.curChat.chat.list.push(payload);
-      this.curChat.chat.draft="";
+      this.curChat.chat.draft = "";
     },
-    setContact(payload:any){
-      this.curContact=payload
+    setContact(payload: any) {
+      this.curContact = payload;
     },
-    setContactList(payload:any){
-      this.contactList=payload;
+    setContactList(payload: any) {
+      this.contactList = payload;
     },
     setLogin(payload: any) {
-      this.isLogin =true;
+      this.isLogin = true;
       this.userInfo = payload;
       window.localStorage.setItem("auth", JSON.stringify(payload));
     },
-    syncUserInfo(){
-      window.localStorage.setItem("auth",JSON.stringify(this.userInfo));
+    syncUserInfo() {
+      window.localStorage.setItem("auth", JSON.stringify(this.userInfo));
     },
     setLogout() {
       console.log("logout");
