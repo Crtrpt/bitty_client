@@ -15,6 +15,13 @@ const zh = {
   search_text: "输入关键字来搜索",
   i_agree: "我同意",
   agreement: "许可协议",
+  account_placeholder: "输入你的账户",
+  password_placeholder: "输入你的密码",
+  email_placeholder: "输入你的邮箱",
+  go_signup: "去注册",
+  go_login: "去登录",
+  signup_account: "注册账户",
+  login_account: "登录账户",
 };
 
 export default zh;

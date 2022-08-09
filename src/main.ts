@@ -22,8 +22,8 @@ library.add(fas);
 const app = createApp(BittyVue);
 
 const i18n = createI18n({
-  locale: "en",
-  fallbackLocale: "en",
+  locale: "zh",
+  fallbackLocale: "zh",
   messages: message,
 });
 
