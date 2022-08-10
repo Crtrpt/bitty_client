@@ -21,6 +21,8 @@ const en = {
   email_placeholder: "enter your password",
   agreement: "the license agreement",
   i_agree: "I agree to",
+  email: "Emails",
+  contact_profile: "Contact Profile",
 };
 
 export default en;

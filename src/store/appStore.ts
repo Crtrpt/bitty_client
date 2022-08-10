@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import api from "../api/api";
 
 const initMenu = (menu: any, parent: any) => {
   // console.log(menu);
@@ -97,79 +98,9 @@ export const appStore = defineStore("appStore", {
       ],
       curContact: null,
       //聊天列表
-      chatList: [
-        {
-          id: 1,
-          name: "苏轼",
-          avatar: "https://api.multiavatar.com/1.png",
-          lastmsg: "十年生死两茫茫，不思量，自难忘。",
-          time: "刚刚",
-          member: [
-            {
-              id: 1,
-              user: {
-                name: "苏轼",
-                avatar: "https://api.multiavatar.com/1.png",
-              },
-            },
-            {
-              id: 2,
-              user: {
-                name: "111",
-                avatar: "https://api.multiavatar.com/1.png",
-              },
-            },
-          ],
-          chat: {
-            sn: 0,
-            draft: "发送给苏轼?",
-            list: [
-              {
-                id: 1,
-                name: "苏轼",
-                msg: "十年生死两茫茫，不思量，自难忘。",
-                time: "刚刚",
-              },
-            ],
-          },
-        },
-        {
-          id: 2,
-          name: "杜甫",
-          avatar: "https://api.multiavatar.com/2.png",
-          lastmsg: "国破山河在，城春草木深。",
-          time: "刚刚",
-          chat: {
-            draft: "发送给杜甫?",
-            list: [
-              {
-                id: 1,
-                name: "杜甫",
-                msg: "十年生死两茫茫，不思量，自难忘。",
-                time: "刚刚",
-              },
-              {
-                id: 2,
-                name: "杜甫",
-                msg: "国破山河在，城春草木深。",
-                time: "刚刚",
-              },
-            ],
-          },
-        },
-        {
-          id: 3,
-          name: "李白",
-          avatar: "https://api.multiavatar.com/3.png",
-          lastmsg: "君不见黄河之水天上来，奔流到海不复回。",
-          time: "刚刚",
-          chat: {
-            draft: "发送给李白?",
-            list: [],
-          },
-        },
-      ],
-      curChat: null,
+      sessionList: [],
+      userMap: {},
+      curSession: null,
       menuPath: [],
       activeMenu: null,
       version: "xxx",
@@ -190,39 +121,47 @@ export const appStore = defineStore("appStore", {
     // contactList(state){
     //   return state.contactList;
     // },
-    // chatList(state){
-    //   return state.chatList;
+    // sessionList(state){
+    //   return state.sessionList;
     // }
   },
 
   actions: {
+    setSessionById(session_id: string) {
+      this.sessionList.forEach((s) => {
+        if (s.session_id == session_id) {
+          console.log("更新");
+          this.curSession = s;
+        }
+      });
+    },
     setChat(payload: any) {
       console.log(payload);
-      this.curChat = payload;
-    },
-    send() {
-      var payload = {
-        msg: this!.curChat!.chat!.draft || "",
-        fromId: this.userInfo.id,
-        sendId: this.curChat.id,
-        sn: this.curChat.chat.sn++,
-        sendTime: Date.now(),
-        serverTime: Date.now(),
-        sender: this.userInfo,
+      this.curSession = payload;
+      this.curSession.chat = this.curSession.chat || {
+        list: [],
       };
-      //sync
-      this.curChat.chat.list.push(payload);
-      this.curChat.chat.draft = "";
     },
+    send(msg: any) {},
     setContact(payload: any) {
       this.curContact = payload;
+    },
+    setSessionList(payload: any) {
+      this.sessionList = payload;
     },
     setContactList(payload: any) {
       this.contactList = payload;
     },
+    clearLoginInfo() {
+      this.contactList = [];
+      this.curContact = null;
+      this.sessionList = [];
+      this.curSession = null;
+    },
     setLogin(payload: any) {
       this.isLogin = true;
       this.userInfo = payload;
+      this.clearLoginInfo();
       window.localStorage.setItem("auth", JSON.stringify(payload));
     },
     syncUserInfo() {
@@ -231,6 +170,7 @@ export const appStore = defineStore("appStore", {
     setLogout() {
       console.log("logout");
       window.localStorage.removeItem("auth");
+      this.clearLoginInfo();
       window.location.reload();
     },
     //设置菜单

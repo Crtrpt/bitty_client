@@ -58,9 +58,8 @@
 <script lang="ts">
 import api from "../../api/api";
 import { appStore } from "../../store/appStore";
-import Index from "../chat/Index.vue";
+
 export default {
-  components: { Index },
   name: "Search",
   setup() {
     const store = appStore();

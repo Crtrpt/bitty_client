@@ -5,13 +5,22 @@
       <div class="flex flex-col">
         <div class="flex items-start">
           <div
-            class="hover:shadow-xl shadow border-8 border-white rounded-full relative flex-shrink-0"
+            class="hover:shadow-xl flex justify-center items-center shadow border-8 border-white rounded-full relative flex-shrink-0"
           >
             <img
               class="w-20 h-20 rounded-full"
               :src="store.userInfo.user.avatar"
               ref="avatarImg"
+              v-if="store.userInfo.user.avatar"
             />
+            <div
+              class="w-20 h-20 rounded-full flex justify-center items-center"
+              v-if="!store.userInfo.user.avatar"
+            >
+              <div class="text-5xl text-gray-700">
+                {{ store.userInfo.user.nick_name[0] }}
+              </div>
+            </div>
             <input
               type="file"
               class="absolute w-20 h-20 top-0 opacity-0"

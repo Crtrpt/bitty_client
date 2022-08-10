@@ -18,23 +18,6 @@
             </div>
           </div>
         </div>
-        <div class="action mt-5 flex text-xs text-white">
-          <div
-            class="rounded cursor-pointer whitespace-nowrap px-10 py-2 bg-blue-400"
-            @click="
-              () => {
-                $router.push({ path: '/chat/' + session.id + '/chat' });
-              }
-            "
-          >
-            发起聊天
-          </div>
-          <div
-            class="rounded cursor-pointer whitespace-nowrap px-10 py-2 mx-2 bg-blue-400"
-          >
-            解除好友
-          </div>
-        </div>
       </div>
     </div>
   </div>

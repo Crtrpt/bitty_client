@@ -3,7 +3,7 @@
     class="flex flex-col text-gray-500 justify-center items-center w-20 bg-gradient-to-r border-r bg-gray-50"
   >
     <div
-      class="rounded-full bg-white p-5 m-5 cursor-pointer hover:shadow-xl border-4 border-white"
+      class="rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
       :class="{
         ' shadow': active == 'my',
       }"
@@ -16,12 +16,21 @@
           $router.push({ path: '/my/profile' });
         }
       "
-    ></div>
+    >
+      <div
+        class="rounded-full flex justify-center items-center"
+        v-if="!store.userInfo.user.avatar"
+      >
+        <div class="text-2xl text-gray-700">
+          {{ store.userInfo.user.nick_name[0] }}
+        </div>
+      </div>
+    </div>
     <a
       class="h-10"
       @click="
         () => {
-          $router.push({ path: '/chat' });
+          $router.push({ path: '/session' });
         }
       "
     >

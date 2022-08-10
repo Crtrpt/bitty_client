@@ -4,11 +4,11 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: 'media',
   theme: {
-    colors: {
-      gray:colors.gray,
-      white:colors.white,
-      blue: colors.blue,
-    },
+    // colors: {
+    //   gray:colors.gray,
+    //   white:colors.white,
+    //   blue: colors.blue,
+    // },
     extend: {},
   },
   plugins: [require("@tailwindcss/forms")],

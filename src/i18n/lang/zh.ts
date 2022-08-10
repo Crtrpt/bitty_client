@@ -7,6 +7,7 @@ const zh = {
   default: "默认",
   customize: "自定义",
   profile: "个人信息",
+  contact_profile: "联系人信息",
   setting: "系统设置",
   logout: "退出",
   email: "邮箱",

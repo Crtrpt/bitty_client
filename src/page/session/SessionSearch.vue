@@ -20,7 +20,7 @@
 
 <script lang="ts">
 export default {
-  name: "ChatSearch",
+  name: "SessionItem",
   props: {
     data: Object,
   },
