@@ -1,10 +1,16 @@
 <template>
   <div class="cell p-2 flex flex-grow cursor-pointer items-center justify-center">
 
-    <div class=" rounded-full relative w-8 h-8 flex-grow-0 flex-shrink-0">
-      <img class=" rounded-full" @click="() => {
-        $router.push({ path: '/user/profile' });
-      }" :src="data.avatar" />
+    <div class=" rounded-full relative w-8 h-8 flex-grow-0 flex-shrink-0" :style="{
+      backgroundImage: 'url(' + data.avatar + ')',
+      backgroundSize: 'cover',
+    }" @click="() => {
+  $router.push({ path: '/user/profile' });
+}">
+
+
+
+
       <div class=" text-center  absolute -top-3 -right-6" v-if="data.unread > 0">
         <div class=" scale-50    text-center   border-2 border-white  p-1   bg-red-500
           rounded-full  px-3 text-white">
