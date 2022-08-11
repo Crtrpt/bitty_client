@@ -16,6 +16,7 @@ export default {
     if (this.store.userInfo) {
       this.store.fetchSessionList();
       this.store.fetchContactList();
+      this.store.mqttInit();
     }
   },
 };

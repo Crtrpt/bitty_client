@@ -1,5 +1,10 @@
 import { defineStore } from "pinia";
 import api from "../api/api";
+import { mqttInit, mqttSubject } from "../api/mqtt";
+
+export const mqttPublish = (session: string, payload: any) => {
+  client.publish(session, JSON.stringify(payload));
+};
 
 export const appStore = defineStore("appStore", {
   state: () => {
@@ -11,6 +16,9 @@ export const appStore = defineStore("appStore", {
     return {
       //用户信息
       userInfo: userinfo,
+      sysInfo: {
+        isConnect: false,
+      },
       //系统配置
       config: {
         allSearch: true,
@@ -27,6 +35,7 @@ export const appStore = defineStore("appStore", {
       curContact: null,
       //聊天列表
       sessionList: [],
+      sessionMap: new Map(),
       userMap: {},
       curSession: null,
       menuPath: [],
@@ -61,6 +70,41 @@ export const appStore = defineStore("appStore", {
           console.log("更新");
           this.curSession = s;
         }
+      });
+    },
+    connect(c) {
+      this.sysInfo.isConnect = true;
+    },
+    message(msg, payload) {
+      console.log("message================");
+      var msgSegment = msg.split("/");
+      var msgPayload = JSON.parse(payload.toString());
+      console.log(msgSegment);
+      switch (msgSegment[2]) {
+        case "session":
+          var session_id = msgSegment[3];
+
+          var msgSession = this.sessionMap.get(session_id);
+          msgSession.unread = msgSession.unread + 1 || 1;
+
+          msgSession.lastmsg = msgPayload.content;
+          switch (msgSegment[4]) {
+            case "chat": {
+            }
+          }
+          break;
+      }
+    },
+    disconnect() {
+      this.sysInfo.isConnect = false;
+      console.log("disconnect================");
+    },
+    mqttInit() {
+      mqttInit({
+        connect: this.connect,
+        message: this.message,
+        disconnect: this.disconnect,
+        topic: "/" + this.userInfo.user.user_id + "/#",
       });
     },
     setChat(payload: any) {
@@ -98,6 +142,11 @@ export const appStore = defineStore("appStore", {
     },
     setSessionList(payload: any) {
       this.sessionList = payload;
+      this.sessionList.forEach((s) => {
+        s.unread = 0;
+        s.last_msg_at = Date.now();
+        this.sessionMap.set(s.session_id, s);
+      });
     },
     setContactList(payload: any) {
       this.contactList = payload;

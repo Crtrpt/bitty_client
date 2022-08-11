@@ -2,7 +2,7 @@
   <div
     class="flex flex-col flex-shrink-0 text-gray-500 justify-center items-center w-20 bg-gradient-to-r border-r bg-gray-50">
     <div
-      class=" shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
+      class=" relative shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
       :class="{
         '  shadow-md': active == 'my',
       }" :style="{
@@ -13,6 +13,11 @@
     $router.push({ path: '/my/profile' });
   }
 ">
+
+      <div class="connect w-2 h-2  rounded-full right-0 top-0 absolute " :class='{
+        " bg-green-500": store.sysInfo.isConnect,
+        " bg-yellow-500": !store.sysInfo.isConnect
+      }'></div>
       <div class="rounded-full flex justify-center items-center" v-if="!store.userInfo.user.avatar">
         <div class="text-2xl text-gray-700">
           {{ store.userInfo.user.nick_name[0] }}
