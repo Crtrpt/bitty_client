@@ -16,6 +16,7 @@ import { createPinia } from "pinia";
 
 import confirm from "./directives/confirm.js";
 import tooltip from "./directives/tooltip";
+import dateUtil from "./utils/dateUtil.js";
 
 library.add(fas);
 
@@ -26,6 +27,7 @@ const i18n = createI18n({
   fallbackLocale: "zh",
   messages: message,
 });
+app.use(dateUtil);
 
 app.use(i18n);
 

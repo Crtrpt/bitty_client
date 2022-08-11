@@ -37,7 +37,7 @@
 import { appStore } from "../../store/appStore";
 import ChatCard from "./ChatCard.vue";
 export default {
-  name: "ChatProfile",
+  name: "SessionProfile",
   components: { ChatCard },
   setup() {
     const store = appStore();

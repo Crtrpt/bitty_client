@@ -1,12 +1,7 @@
-
-
 import AppLayout from "../layout/AppLayout.vue";
 import login from "../page/auth/Login.vue";
 import signup from "../page/auth/Signup.vue";
 import Page404 from "../page/Page404.vue";
-
-
-
 
 const route = [
   {
@@ -29,12 +24,15 @@ const route = [
               },
               {
                 path: "profile",
-                component: () => import(`../page/session/Profile.vue`),
-              }
-            ]
+                component: () => import(`../page/session/SessionProfile.vue`),
+              },
+            ],
           },
-
-        ]
+          {
+            path: "",
+            component: () => import(`../page/system/Search.vue`),
+          },
+        ],
       },
       {
         path: "/contact",
@@ -47,13 +45,12 @@ const route = [
               {
                 path: "profile",
                 component: () => import(`../page/contact/Profile.vue`),
-              }
-            ]
+              },
+            ],
           },
-
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     path: "/my",
@@ -66,7 +63,7 @@ const route = [
         path: "profile",
         component: () => import(`../page/my/Profile.vue`),
       },
-    ]
+    ],
   },
   {
     path: "/search",
@@ -79,7 +76,7 @@ const route = [
         path: "",
         component: () => import(`../page/system/Search.vue`),
       },
-    ]
+    ],
   },
   {
     path: "/setting",
@@ -89,7 +86,7 @@ const route = [
         path: "",
         component: () => import(`../page/system/Setting.vue`),
       },
-    ]
+    ],
   },
   {
     path: "/message",
@@ -109,10 +106,9 @@ const route = [
             path: "unreadMessage",
             component: () => import(`../page/message/UnreadMessage.vue`),
           },
-        ]
+        ],
       },
-
-    ]
+    ],
   },
   {
     path: "/login",
@@ -140,12 +136,5 @@ const route = [
     redirect: "/404",
   },
 ];
-
-
-console.log(route);
-
-
-
-
 
 export default route;

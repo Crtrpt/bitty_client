@@ -1,21 +1,34 @@
 <template>
-  <div class="w-80 bg-gray-100 border-r">
-    <SessionSearch :kewords="kewords" class="h-12"></SessionSearch>
+  <div class="w-80 bg-gray-100 border-r flex-shrink-0">
+    <div class="px-2 h-12 text-base  bg-gray-50 border-b text-gray-500 flex  justify-between items-center">
 
-    <div
-      v-for="i in store.sessionList"
-      :key="i"
-      class="flex hover:bg-gray-200"
-      :class="{
-        'bg-gray-300': active == i.session_id,
-      }"
-      @click="
-        () => {
-          store.setChat(i);
-          $router.push({ path: '/session/' + i.session_id + '/chat' });
-        }
-      "
-    >
+      <div class="flex justify-center">
+        <div>会话</div>
+        <div>({{ store.sessionList.length }})</div>
+      </div>
+
+      <div class="flex justify-center">
+        <font-awesome-icon @click="
+          () => {
+            $router.push({ path: '/search' });
+          }
+        " class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
+          icon="add" />
+        <font-awesome-icon @click="() => displaySearch = !displaySearch"
+          class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
+          icon="search" />
+      </div>
+    </div>
+    <SessionSearch v-if="displaySearch" :kewords="kewords" class="h-12"></SessionSearch>
+
+    <div v-for="i in store.sessionList" :key="i" class="flex hover:bg-gray-200" :class="{
+      'bg-gray-300': active == i.session_id,
+    }" @click="
+  () => {
+    store.setChat(i);
+    $router.push({ path: '/session/' + i.session_id + '/chat' });
+  }
+">
       <SessionItem :data="i"></SessionItem>
     </div>
   </div>
@@ -42,20 +55,11 @@ export default {
   data() {
     return {
       kewords: "",
+      displaySearch: false,
       list: [],
     };
   },
-  mounted() {
-    console.log("加载");
-    var _this = this;
-    api
-      .get("session/list", { user_id: this.store.userInfo.user.user_id })
-      .then((res) => {
-        if (res.code == 0) {
-          _this.store.setSessionList(res.data);
-        }
-      });
-  },
+  mounted() { },
   components: { SessionItem, SessionSearch },
 };
 </script>

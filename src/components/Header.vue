@@ -1,120 +1,76 @@
 <template>
   <div
-    class="flex flex-col text-gray-500 justify-center items-center w-20 bg-gradient-to-r border-r bg-gray-50"
-  >
+    class="flex flex-col flex-shrink-0 text-gray-500 justify-center items-center w-20 bg-gradient-to-r border-r bg-gray-50">
     <div
-      class="rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
+      class=" shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
       :class="{
-        ' shadow': active == 'my',
-      }"
-      :style="{
-        backgroundImage: 'url(' + store.userInfo.user.avatar + ')',
-        backgroundSize: 'cover',
-      }"
-      @click="
-        () => {
-          $router.push({ path: '/my/profile' });
-        }
-      "
-    >
-      <div
-        class="rounded-full flex justify-center items-center"
-        v-if="!store.userInfo.user.avatar"
-      >
+        '  shadow-md': active == 'my',
+      }" :style="{
+  backgroundImage: 'url(' + store.userInfo.user.avatar + ')',
+  backgroundSize: 'cover',
+}" @click="
+  () => {
+    $router.push({ path: '/my/profile' });
+  }
+">
+      <div class="rounded-full flex justify-center items-center" v-if="!store.userInfo.user.avatar">
         <div class="text-2xl text-gray-700">
           {{ store.userInfo.user.nick_name[0] }}
         </div>
       </div>
     </div>
-    <a
-      class="h-10"
-      @click="
-        () => {
-          $router.push({ path: '/session' });
-        }
-      "
-    >
-      <font-awesome-icon
-        class="w-5 cursor-pointer hover:text-gray-800"
-        icon="message"
-        :class="{
-          'text-blue-500': active == 'chat',
-        }"
-      />
+    <a class="h-10" @click="
+      () => {
+        $router.push({ path: '/session' });
+      }
+    ">
+      <font-awesome-icon class="w-5 cursor-pointer hover:text-gray-800" icon="message" :class="{
+        'text-blue-500': active == 'chat',
+      }" />
     </a>
-    <a
-      class="h-10"
-      @click="
-        () => {
-          $router.push({ path: '/contact' });
-        }
-      "
-    >
-      <font-awesome-icon
-        class="w-5 cursor-pointer"
-        icon="user-group"
-        :class="{
-          'text-blue-500': active == 'contact',
-        }"
-      />
+    <a class="h-10" @click="
+      () => {
+        $router.push({ path: '/contact' });
+      }
+    ">
+      <font-awesome-icon class="w-5 cursor-pointer" icon="user-group" :class="{
+        'text-blue-500': active == 'contact',
+      }" />
     </a>
     <div class="flex flex-col-reverse flex-grow items-center">
-      <a
-        class="h-10"
-        @click="
-          () => {
-            $router.push({ path: '/login' });
-          }
-        "
-      >
-        <font-awesome-icon
-          class="w-5 cursor-pointer"
-          icon="arrow-right-from-bracket"
-        />
+      <a class="h-10" @click="
+        () => {
+          $router.push({ path: '/login' });
+        }
+      ">
+        <font-awesome-icon class="w-5 cursor-pointer" icon="arrow-right-from-bracket" />
       </a>
       <a class="h-10">
-        <font-awesome-icon
-          class="w-5 cursor-pointer"
-          icon="bars"
-          :class="{
-            'text-blue-500': active == 'setting',
-          }"
-          @click="
-            () => {
-              $router.push({ path: '/setting' });
-            }
-          "
-        />
+        <font-awesome-icon class="w-5 cursor-pointer" icon="bars" :class="{
+          'text-blue-500': active == 'setting',
+        }" @click="
+  () => {
+    $router.push({ path: '/setting' });
+  }
+" />
       </a>
       <a class="h-10">
-        <font-awesome-icon
-          class="w-5 cursor-pointer"
-          icon="bell"
-          :class="{
-            'text-blue-500': active == 'message',
-          }"
-          @click="
-            () => {
-              $router.push({ path: '/message' });
-            }
-          "
-        />
+        <font-awesome-icon class="w-5 cursor-pointer" icon="bell" :class="{
+          'text-blue-500': active == 'message',
+        }" @click="
+  () => {
+    $router.push({ path: '/message' });
+  }
+" />
       </a>
-      <a
-        class="h-10"
-        @click="
-          () => {
-            $router.push({ path: '/search' });
-          }
-        "
-      >
-        <font-awesome-icon
-          class="w-5 cursor-pointer"
-          icon="search"
-          :class="{
-            'text-blue-500': active == 'search',
-          }"
-        />
+      <a class="h-10" @click="
+        () => {
+          $router.push({ path: '/search' });
+        }
+      ">
+        <font-awesome-icon class="w-5 cursor-pointer" icon="search" :class="{
+          'text-blue-500': active == 'search',
+        }" />
       </a>
     </div>
   </div>

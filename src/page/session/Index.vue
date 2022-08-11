@@ -1,12 +1,15 @@
 <template>
   <div class="flex flex-grow">
     <SessionList :active="active" />
-    <router-view></router-view>
+    <router-view>
+
+    </router-view>
   </div>
 </template>
 
 <script lang="ts">
 import SessionList from "./SessionList.vue";
+import Search from "../system/Search.vue";
 export default {
   name: "SessionView",
   watch: {
@@ -26,6 +29,6 @@ export default {
     console.log(this.$route.params.id);
     this.active = this.$route.params.id;
   },
-  components: { SessionList },
+  components: { SessionList, Search },
 };
 </script>
