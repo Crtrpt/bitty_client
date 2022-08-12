@@ -5,7 +5,7 @@ export default {
         Vue.mixin({
             methods: {
                 prttyDate: function (time) {
-                    console.log(time);
+
                     var date = new Date(time),
                         diff = (((new Date()).getTime() - date.getTime()) / 1000),
                         day_diff = Math.floor(diff / 86400);
@@ -22,6 +22,18 @@ export default {
                         day_diff == 1 && "昨天" ||
                         day_diff < 7 && day_diff + "天以前" ||
                         day_diff < 31 && Math.ceil(day_diff / 7) + "周以前";
+                },
+                //提示框
+                alert: function (options) {
+                    //动态创建
+                },
+                //确认框
+                confirm: function (options) {
+
+                },
+                //消息提示
+                msg: function (options) {
+
                 }
             },
         })

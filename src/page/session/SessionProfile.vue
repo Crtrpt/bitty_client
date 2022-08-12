@@ -4,9 +4,10 @@
       <router-link :to="{
         path: './chat',
       }">
-        <font-awesome-icon class="w-5 cursor-pointer hover:text-gray-800" icon="arrow-left" />
+        <font-awesome-icon class="w-5 px-2 cursor-pointer hover:text-gray-800" icon="arrow-left" />
+        {{ store.curSession?.name }}
       </router-link>
-      {{ store.curSession?.name }}
+
     </div>
     <div class="flex flex-row">
       <div class="p-2 flex flex-col justify-center items-center" v-for="m in store.curSession?.member || []" :key="m"

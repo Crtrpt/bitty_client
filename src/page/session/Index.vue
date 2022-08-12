@@ -21,11 +21,13 @@ export default {
   data() {
     return {
       active: "",
+      session: {},
     };
   },
   mounted() {
     this.active = this.$route.params.id;
   },
+
   components: { SessionList, Search },
 };
 </script>

@@ -6,7 +6,7 @@
         class=" relative shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
         :class="{
           'shadow-md': active == 'my',
-          'grayscale blur-sm': !store.sysInfo.isConnect
+          ' blur-sm': !store.sysInfo.isConnect
         }" :style="{
   backgroundImage: 'url(' + store.userInfo.user.avatar + ')',
   backgroundSize: 'cover',
