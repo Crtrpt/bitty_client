@@ -30,7 +30,7 @@
     <div class=" flex flex-col justify-between  h-full">
 
       <div class="flex flex-row-reverse">
-        <div class=" text-xs text-gray-500">{{ data.lastmsg_at || "暂无" }}</div>
+        <div class=" text-xs text-gray-500">{{ prttyDate(data.lastmsg_at) || "暂无" }}</div>
       </div>
     </div>
   </div>

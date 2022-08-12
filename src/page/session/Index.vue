@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-grow">
     <SessionList :active="active" />
-    <router-view>
-
-    </router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,7 +24,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.params.id);
     this.active = this.$route.params.id;
   },
   components: { SessionList, Search },

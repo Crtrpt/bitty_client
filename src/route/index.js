@@ -20,7 +20,7 @@ const route = [
             children: [
               {
                 path: "chat",
-                component: () => import(`../page/session/Chat.vue`),
+                component: () => import(`../page/chat/Chat.vue`),
               },
               {
                 path: "profile",

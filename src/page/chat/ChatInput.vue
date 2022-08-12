@@ -1,7 +1,10 @@
 <template>
   <div class="h-full flex flex-col">
-    <div class="h-10 border-b"></div>
-    <div class="p-2 w-full h-full">
+    <div class="  flex-shrink-0 h-10 border-b flex  items-center  px-2 text-gray-500">
+      <font-awesome-icon class="w-5 pr-2 cursor-pointer hover:text-gray-900" icon="fa-brands fa-markdown" />
+      <ImageInput :sn="sn"></ImageInput>
+    </div>
+    <div class="p-2  flex-grow">
       <textarea class="w-full h-full  outline-none" v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
         @keyup.enter="send()"></textarea>
     </div>
@@ -9,38 +12,36 @@
 </template>
 
 <script lang="ts">
-import api from "../../api/api";
 import { appStore } from "../../store/appStore";
+import ImageInput from "./ImageInput.vue";
 export default {
   name: "ChatInput",
-  props: {
-    data: Object,
-  },
   data() {
     return {
       draft: "",
       sn: 0,
+      type: 0
     };
   },
   methods: {
     send() {
       var payload = {
-        user_id: this.data.user.user_id,
-        session_id: this.data.session.session_id,
+        sender_id: this.store.userInfo.user.user_id,
+        session_id: this.store.curSession.session_id,
         content: this.draft,
         payload: "",
-        type: 0,
+        type: this.type,
         sn: this.sn++,
+        created_at: Date.now()
       };
-
-      api.post("chat/sendMsg", payload).then((res) => {
-        console.log("发送消息回调");
-      });
+      this.store.send("/session/" + this.store.curSession.session_id + "/chat", payload);
+      this.draft = "";
     },
   },
   setup() {
     const store = appStore();
     return { store };
   },
+  components: { ImageInput }
 };
 </script>

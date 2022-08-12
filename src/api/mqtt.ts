@@ -13,4 +13,10 @@ export const mqttInit = (options: any) => {
   client.on("disconnect", options.disconnect);
 };
 
-export const mqttSubject = (topic: string) => {};
+export const mqttSubject = (topic: string) => {
+  client.subscribe(topic);
+};
+
+export const mqttPublish = (topic: string, payload: any) => {
+  client.publish(topic, payload);
+};

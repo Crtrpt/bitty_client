@@ -5,7 +5,8 @@ export default {
         Vue.mixin({
             methods: {
                 prttyDate: function (time) {
-                    var date = new Date((time || "").replace(/-/g, "/").replace(/[TZ]/g, " ")),
+                    console.log(time);
+                    var date = new Date(time),
                         diff = (((new Date()).getTime() - date.getTime()) / 1000),
                         day_diff = Math.floor(diff / 86400);
 

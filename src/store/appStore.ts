@@ -1,10 +1,6 @@
 import { defineStore } from "pinia";
 import api from "../api/api";
-import { mqttInit, mqttSubject } from "../api/mqtt";
-
-export const mqttPublish = (session: string, payload: any) => {
-  client.publish(session, JSON.stringify(payload));
-};
+import { mqttInit, mqttSubject, mqttPublish } from "../api/mqtt";
 
 export const appStore = defineStore("appStore", {
   state: () => {
@@ -36,7 +32,7 @@ export const appStore = defineStore("appStore", {
       //聊天列表
       sessionList: [],
       sessionMap: new Map(),
-      userMap: {},
+      userMap: new Map(),
       curSession: null,
       menuPath: [],
       activeMenu: null,
@@ -65,10 +61,31 @@ export const appStore = defineStore("appStore", {
 
   actions: {
     setSessionById(session_id: string) {
-      this.sessionList.forEach((s) => {
-        if (s.session_id == session_id) {
-          console.log("更新");
-          this.curSession = s;
+      console.log("set seesion_id", session_id);
+      console.log(this.sessionList);
+
+      for (const idx in this.sessionList) {
+        console.log(this.sessionList[idx].session_id == session_id);
+        if (this.sessionList[idx].session_id == session_id) {
+          this.curSession = this.sessionList[idx];
+          break;
+        }
+      }
+    },
+    getUserProfile(user_id: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+        var userinfo = this.userMap.get(user_id);
+        if (userinfo) {
+          resolve(userinfo);
+        } else {
+          api.get("user/profile", { user_id: user_id }).then((res) => {
+            if (res.code == 0) {
+              this.userMap.set(res.data.user_id, res.data);
+              resolve(res.data);
+            } else {
+              reject();
+            }
+          });
         }
       });
     },
@@ -80,16 +97,24 @@ export const appStore = defineStore("appStore", {
       var msgSegment = msg.split("/");
       var msgPayload = JSON.parse(payload.toString());
       console.log(msgSegment);
-      switch (msgSegment[2]) {
+      console.log(payload.toString());
+      switch (msgSegment[1]) {
         case "session":
-          var session_id = msgSegment[3];
+          var session_id = msgSegment[2];
 
           var msgSession = this.sessionMap.get(session_id);
-          msgSession.unread = msgSession.unread + 1 || 1;
 
+          console.log(this.curSession);
+          //如果不是自己发的 那么 未读消息+1
+          if (this.curSession?.session_id != msg.session_id) {
+            msgSession.unread = msgSession.unread + 1 || 1;
+          }
           msgSession.lastmsg = msgPayload.content;
-          switch (msgSegment[4]) {
+          msgSession.lastmsg_at = msgPayload.created_at;
+          switch (msgSegment[3]) {
             case "chat": {
+              console.log(msgSession);
+              msgSession.chat.list.push(JSON.parse(payload.toString()));
             }
           }
           break;
@@ -114,7 +139,11 @@ export const appStore = defineStore("appStore", {
         list: [],
       };
     },
-    send(msg: any) {},
+    send(topic: any, payload: any) {
+      console.log("publish:" + topic);
+      console.log("payload:", payload);
+      mqttPublish(topic, JSON.stringify(payload));
+    },
     setContact(payload: any) {
       this.curContact = payload;
     },
@@ -143,9 +172,18 @@ export const appStore = defineStore("appStore", {
     setSessionList(payload: any) {
       this.sessionList = payload;
       this.sessionList.forEach((s) => {
+        console.log("初始化session");
+        if (!s.chat) {
+          s.chat = {
+            list: [],
+          };
+        }
         s.unread = 0;
         s.last_msg_at = Date.now();
         this.sessionMap.set(s.session_id, s);
+        var topic = "/session/" + s.session_id + "/#";
+        console.log("suject: " + topic);
+        mqttSubject(topic);
       });
     },
     setContactList(payload: any) {
