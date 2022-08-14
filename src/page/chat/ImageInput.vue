@@ -45,7 +45,7 @@ export default {
               session_id: this.store.curSession.session_id,
               content: "[图片] " + f.name,
               payload: {
-                size: f.size,
+                size: file.size,
                 name: f.name,
                 url: res.data
               },

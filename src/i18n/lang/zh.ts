@@ -10,7 +10,7 @@ const zh = {
   contact_profile: "联系人信息",
   setting: "系统设置",
   logout: "退出",
-  email: "邮箱",
+  email: "邮箱:",
   systemConfig: "系统设置",
   search: "搜索",
   search_text: "输入关键字来搜索",
@@ -23,6 +23,13 @@ const zh = {
   go_login: "去登录",
   signup_account: "注册账户",
   login_account: "登录账户",
+  remember_account: "记住登录账户",
+  forgot_password: "忘记密码?",
+  reset_password: "重置密码",
+  code_placeholder: "输入你的验证码",
+  code: "验证码:",
+  confirm_reset_password: "确认重置",
+  get_code: "获取验证码",
 };
 
 export default zh;

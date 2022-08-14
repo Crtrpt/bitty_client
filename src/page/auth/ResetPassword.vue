@@ -1,66 +1,55 @@
 <template>
   <div class="container m-auto flex flex-col items-center justify-center h-screen">
     <div class="w-80">
-      <div class="text-3xl mb-5">{{ $t("login_account") }}</div>
+      <div class="text-3xl mb-5">{{ $t("reset_password") }}</div>
       <label class="block">
         <span class="text-gray-700"> {{ $t("account") }}</span>
         <input type="text" v-model="form.account" class="mt-1 block w-full rounded-md border-gray-300"
           :placeholder="$t('account_placeholder')" />
       </label>
       <label class="block">
+        <span class="text-gray-700">{{ $t("email") }}</span>
+        <input v-model="form.email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          :placeholder="$t('email_placeholder')" />
+      </label>
+      <div class="block">
+        <div class="flex mt-2">
+          <div @click="getCode"
+            class="border p-2 px-5 rounded bg-blue-600 hover:bg-blue-700 text-white border-gray-300 hover:border-indigo-300 cursor-pointer">
+            {{ $t("get_code") }}
+          </div>
+        </div>
+      </div>
+
+      <label class="block">
+        <span class="text-gray-700">{{ $t("code") }}</span>
+        <input v-model="form.code" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          :placeholder="$t('code_placeholder')" />
+      </label>
+
+      <label class="block">
         <span class="text-gray-700">{{ $t("password") }}</span>
         <input type="password" v-model="form.password" :placeholder="$t('password_placeholder')"
           class="mt-1 block w-full rounded-md border-gray-300" />
       </label>
-      <div class="block">
-        <div class="flex mt-2 items-center">
-          <input type="checkbox" class="input" v-model="form.agreement" />
-
-          <div class="ml-4 text-sm">
-            {{ $t("i_agree") }}
-            <router-link :to="{ name: 'agreement' }" class="underline">
-              {{ $t("agreement") }}</router-link>
-          </div>
-        </div>
-
-
-        <div class="flex mt-2 items-center text-sm">
-          <input type="checkbox" v-model="form.remember_account" />
-
-          <div class="ml-4">
-            {{ $t("remember_account") }}
-          </div>
-        </div>
-
-
-
-      </div>
-
 
       <div class="block">
         <div class="flex mt-2">
-          <div @click="login"
+          <div @click="reset"
             class="border p-2 px-5 rounded bg-blue-600 hover:bg-blue-700 text-white border-gray-300 hover:border-indigo-300 cursor-pointer">
-            {{ $t("login_btn") }}
+            {{ $t("confirm_reset_password") }}
           </div>
 
           <div @click="
             () => {
               $router.push({
-                path: 'signup',
+                path: 'login',
               });
             }
           "
             class="border ml-2 p-2 px-5 rounded text-blue-600 hover:text-blue-700 bg-white border-gray-300 hover:border-indigo-300 cursor-pointer">
-            {{ $t("go_signup") }}
+            {{ $t("go_login") }}
           </div>
-        </div>
-      </div>
-      <div class="block">
-        <div class="flex mt-2 items-center text-sm">
-          {{ $t("forgot_password") }}
-          <router-link :to="{ name: 'reset_password' }" class="pl-2 underline">
-            {{ $t("reset_password") }}</router-link>
         </div>
       </div>
     </div>
@@ -73,7 +62,7 @@ import { mapActions } from "pinia";
 import api from "../../api/api";
 
 export default {
-  name: "Login",
+  name: "ResetPassword",
   setup() {
     const appstore = appStore();
     return {
@@ -82,22 +71,6 @@ export default {
   },
   methods: {
     ...mapActions(appStore, ["setLogin"]),
-
-    login() {
-      let _this = this;
-      if (!this.form.agreement) {
-        alert("需要同意许可协议才能继续");
-        return;
-      }
-      api.post("auth/login", this.form).then((res) => {
-        if (res.code == 0) {
-          _this.setLogin(res.data);
-          _this.$router.push({
-            path: "my/profile",
-          });
-        }
-      });
-    },
     getCode() {
       api.post("auth/sendcode", {
         account: this.form.account,
@@ -110,14 +83,24 @@ export default {
         }
       });
     },
+    reset() {
+      let _this = this;
+
+      api.post("auth/resetpassword", this.form).then((res) => {
+        if (res.code == 0) {
+          alert("重置秘密成功")
+        }
+      });
+    },
   },
   mounted() { },
   data() {
     return {
       form: {
         account: "",
+        email: "",
+        code: "",
         password: "",
-        agreement: 0,
       },
     };
   },

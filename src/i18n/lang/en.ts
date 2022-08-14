@@ -23,6 +23,11 @@ const en = {
   i_agree: "I agree to",
   email: "Emails",
   contact_profile: "Contact Profile",
+  remember_account: "Remember Account",
+  forgot_password: "Forgot Password?",
+  reset_password: "Reset password",
+  confirm_reset_password: "Reset",
+  get_code: "Get Code",
 };
 
 export default en;

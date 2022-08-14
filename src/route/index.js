@@ -121,6 +121,11 @@ const route = [
     component: () => import(`../page/auth/Agreement.vue`),
   },
   {
+    path: "/reset_password",
+    name: "reset_password",
+    component: () => import(`../page/auth/resetPassword.vue`),
+  },
+  {
     path: "/signup",
     name: "signup",
     component: signup,

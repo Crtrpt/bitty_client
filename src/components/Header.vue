@@ -80,7 +80,6 @@
   </div>
 </template>
 <script lang="ts">
-import Menu from "./Menu.vue";
 import Avatar from "./Avatar.vue";
 import { appStore } from "../store/appStore";
 import { mapActions } from "pinia";
@@ -122,7 +121,7 @@ export default {
     },
   },
   components: {
-    Menu,
+
     Avatar,
   },
 };
