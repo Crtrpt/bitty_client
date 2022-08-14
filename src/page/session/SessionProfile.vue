@@ -10,6 +10,7 @@
 
     </div>
     <div class="flex flex-row">
+      <!-- 成员列表 -->
       <div class="p-2 flex flex-col justify-center items-center" v-for="m in store.curSession?.member || []" :key="m"
         @click="
           () => {
@@ -21,6 +22,10 @@
         </div>
         <div class="text-xs text-gray-400">{{ m.user.name }}</div>
       </div>
+      <!-- 配置列表 -->
+      <div class="action p-2">
+        <a class="border px-2 py-4">删除会话</a>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +34,15 @@
 import { appStore } from "../../store/appStore";
 export default {
   name: "SessionProfile",
+  data() {
+    return {
+      session: {}
+    }
+  },
+  mounted() {
+    //获取session信息
+    //获取
+  },
   setup() {
     const store = appStore();
     return { store };

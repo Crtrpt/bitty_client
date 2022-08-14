@@ -4,10 +4,7 @@
     }">
         <Avatar :user_id="data.sender_id"></Avatar>
         <div class="mb-4">
-            <component :is="renderMap[data.type]" :data="data"></component>
-
-
-
+            <component class=" bg-gray-100 hover:shadow-md" :is="renderMap[data.type]" :data="data"></component>
             <div class="text-xs text-gray-300 py-0.5">
                 {{ prttyDate(data.created_at) }}
             </div>
@@ -19,11 +16,12 @@
 import { appStore } from "../../store/appStore";
 import TextRender from "../render/TextRender.vue";
 import ImageRender from "../render/ImageRender.vue";
+import FileRender from "../render/FileRender.vue";
 export default {
     name: "ChatItem",
     data() {
         return {
-            renderMap: ["text-render", "image-render"]
+            renderMap: ["text-render", "image-render", "file-render"]
         }
     },
     setup() {
@@ -33,6 +31,6 @@ export default {
     props: {
         data: Object
     },
-    components: { TextRender, ImageRender }
+    components: { TextRender, ImageRender, FileRender }
 };
 </script>

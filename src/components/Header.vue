@@ -1,12 +1,11 @@
 <template>
   <div
     class="flex flex-col flex-shrink-0 text-gray-500 justify-center items-center w-20 bg-gradient-to-r border-r bg-gray-50">
-    <div class="   h-24 ">
+    <div class="h-24 ">
       <div
         class=" relative shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-14 h-14 cursor-pointer hover:shadow-xl border-4 border-white"
         :class="{
           'shadow-md': active == 'my',
-          ' blur-sm': !store.sysInfo.isConnect
         }" :style="{
   backgroundImage: 'url(' + store.userInfo.user.avatar + ')',
   backgroundSize: 'cover',
@@ -24,7 +23,7 @@
         </div>
       </div>
     </div>
-    <a class="h-10" @click="
+    <a class="h-10 flex-shrink-0" @click="
       () => {
         $router.push({ path: '/session' });
       }
@@ -33,7 +32,7 @@
         'text-blue-500': active == 'chat',
       }" />
     </a>
-    <a class="h-10" @click="
+    <a class="h-10 flex-shrink-0" @click="
       () => {
         $router.push({ path: '/contact' });
       }

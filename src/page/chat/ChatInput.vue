@@ -1,11 +1,12 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="  flex-shrink-0 h-10 border-b flex  items-center  px-2 text-gray-500">
-      <font-awesome-icon class="w-5 pr-2 cursor-pointer hover:text-gray-900" icon="fa-brands fa-markdown" />
+      <font-awesome-icon class="w-5  pr-2 cursor-pointer  hover:text-gray-900" icon="fa-solid fa-font" />
       <ImageInput :sn="sn"></ImageInput>
+      <FileInput :sn="sn"></FileInput>
     </div>
     <div class="p-2  flex-grow">
-      <textarea class="w-full h-full  outline-none" v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
+      <textarea class=" border-none  w-full h-full  " v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
         @keyup.enter="send()"></textarea>
     </div>
   </div>
@@ -14,6 +15,7 @@
 <script lang="ts">
 import { appStore } from "../../store/appStore";
 import ImageInput from "./ImageInput.vue";
+import FileInput from "./FileInput.vue";
 export default {
   name: "ChatInput",
   data() {
@@ -42,6 +44,6 @@ export default {
     const store = appStore();
     return { store };
   },
-  components: { ImageInput }
+  components: { ImageInput, FileInput }
 };
 </script>

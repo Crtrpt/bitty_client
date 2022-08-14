@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { appStore } from "../store/appStore";
-import { mapActions, mapState } from "pinia";
+
 
 export default {
     name: "Avatar",

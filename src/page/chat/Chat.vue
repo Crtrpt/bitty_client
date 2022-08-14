@@ -7,7 +7,7 @@
         path: './profile',
       }">
 
-        <font-awesome-icon class="w-5  px-2 cursor-pointer hover:text-gray-800" icon="fa-regular fa-comments" />
+        <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="comments" />
         {{ this.store.curSession?.name || "加载中..." }}
       </router-link>
     </div>

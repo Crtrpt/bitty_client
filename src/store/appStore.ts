@@ -106,8 +106,10 @@ export const appStore = defineStore("appStore", {
 
           console.log(this.curSession);
           //如果不是自己发的 那么 未读消息+1
-          if (this.curSession?.session_id != msg.session_id) {
+          if (this.curSession?.session_id != session_id) {
             msgSession.unread = msgSession.unread + 1 || 1;
+          } else {
+            msgSession.unread = 0;
           }
           msgSession.lastmsg = msgPayload.content;
           msgSession.lastmsg_at = msgPayload.created_at;

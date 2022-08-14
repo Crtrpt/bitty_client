@@ -23,6 +23,13 @@ export default {
                         day_diff < 7 && day_diff + "天以前" ||
                         day_diff < 31 && Math.ceil(day_diff / 7) + "周以前";
                 },
+                prttySize: function (size) {
+                    console.log(size);
+                    return size < 1000 && size + "b" ||
+                        size < 1000_000 && (size / 1000).toFixed(2) + "k" ||
+                        size < 1000_000_000 && (size / 1000_000).toFixed(2) + "m" ||
+                        size < 1000_000_000_000 && (size / 1000_000_000).toFixed(2) + "g" || "未知";
+                },
                 //提示框
                 alert: function (options) {
                     //动态创建
