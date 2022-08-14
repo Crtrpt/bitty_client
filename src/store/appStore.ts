@@ -214,11 +214,6 @@ export const appStore = defineStore("appStore", {
       this.clearLoginInfo();
       window.location.reload();
     },
-    //设置菜单
-    setMenu(menu: any) {
-      this.menu = menu == null ? this.menu : menu;
-      initMenu(this.menu, null);
-    },
     //开关菜单
     toggleMenu(menu: any) {
       menu._open = !menu._open;

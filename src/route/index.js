@@ -1,13 +1,12 @@
-import AppLayout from "../layout/AppLayout.vue";
-import login from "../page/auth/Login.vue";
-import signup from "../page/auth/Signup.vue";
+
+
 import Page404 from "../page/Page404.vue";
 
 const route = [
   {
     path: "/",
     name: "home",
-    component: AppLayout,
+    component: () => import(`../layout/AppLayout.vue`),
 
     children: [
       {
@@ -57,7 +56,7 @@ const route = [
     meta: {
       name: "my",
     },
-    component: AppLayout,
+    component: () => import(`../layout/AppLayout.vue`),
     children: [
       {
         path: "profile",
@@ -67,7 +66,7 @@ const route = [
   },
   {
     path: "/search",
-    component: AppLayout,
+    component: () => import(`../layout/AppLayout.vue`),
     meta: {
       name: "home",
     },
@@ -113,7 +112,7 @@ const route = [
   {
     path: "/login",
     name: "login",
-    component: login,
+    component: import(`../page/auth/Login.vue`),
   },
   {
     path: "/agreement",
@@ -128,7 +127,7 @@ const route = [
   {
     path: "/signup",
     name: "signup",
-    component: signup,
+    component: () => import(`../page/auth/signup.vue`),
   },
   {
     path: "/404",
