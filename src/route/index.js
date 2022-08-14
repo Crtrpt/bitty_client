@@ -122,12 +122,12 @@ const route = [
   {
     path: "/reset_password",
     name: "reset_password",
-    component: () => import(`../page/auth/resetPassword.vue`),
+    component: () => import(`../page/auth/ResetPassword.vue`),
   },
   {
     path: "/signup",
     name: "signup",
-    component: () => import(`../page/auth/signup.vue`),
+    component: () => import(`../page/auth/Signup.vue`),
   },
   {
     path: "/404",
