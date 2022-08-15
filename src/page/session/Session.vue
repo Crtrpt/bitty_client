@@ -1,12 +1,17 @@
 <template>
-  <RouterView class="flex-grow" :session="session"></RouterView>
-</template>
+  <RouterView class="flex-grow" :session="session" :config="config"></RouterView>
+</template >
 
-<script lang="ts">
+<script lang=" ts">
 import api from '../../api/api';
 import { appStore } from '../../store/appStore';
 export default {
   name: "Session",
+  computed: {
+    "config"() {
+      return this.store.userSessionMap.get(this.$route.params.id)
+    }
+  },
   data() {
     return {
       session: {}

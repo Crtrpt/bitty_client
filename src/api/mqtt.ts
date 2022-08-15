@@ -14,9 +14,15 @@ export const mqttInit = (options: any) => {
 };
 
 export const mqttSubject = (topic: string) => {
+  console.log("订阅" + topic);
   client.subscribe(topic);
 };
 
 export const mqttPublish = (topic: string, payload: any) => {
+  console.log("取消订阅" + topic);
   client.publish(topic, payload);
+};
+
+export const mqttUnsubscribe = (topic: string) => {
+  client.unsubscribe(topic);
 };

@@ -32,7 +32,8 @@ export default {
     return { store };
   },
   props: {
-    session: Object
+    session: Object,
+    config: Object,
   },
   data() {
     return {

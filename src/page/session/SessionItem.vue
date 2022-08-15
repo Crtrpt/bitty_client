@@ -8,10 +8,9 @@
   $router.push({ path: '/user/profile' });
 }">
 
-
-
-
-      <div class=" text-center  absolute -top-3 -right-6" v-if="data.unread > 0">
+      <font-awesome-icon v-if="config.suspend" class="absolute -bottom-2 -right-2 w-3  cursor-pointer text-gray-600"
+        icon="ban" />
+      <div class=" text-center absolute -top-3 -right-6" v-if="data.unread > 0">
         <div class=" scale-50    text-center   border-2 border-white  p-1   bg-red-500
           rounded-full  px-3 text-white">
           {{ data.unread ||
@@ -43,7 +42,11 @@ export default {
   props: {
     data: Object,
   },
-
+  computed: {
+    "config"() {
+      return this.store.userSessionMap.get(this.data.session_id)
+    }
+  },
   setup() {
     const store = appStore();
     return { store };

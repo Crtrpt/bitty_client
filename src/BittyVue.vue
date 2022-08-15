@@ -15,6 +15,7 @@ export default {
   mounted() {
     if (this.store.userInfo) {
       this.store.fetchSessionList();
+      this.store.fetchUserSessionList();
       this.store.fetchContactList();
       this.store.mqttInit();
     }

@@ -79,7 +79,7 @@ const route = [
   },
   {
     path: "/setting",
-    component: AppLayout,
+    component: () => import(`../layout/AppLayout.vue`),
     children: [
       {
         path: "",
@@ -89,7 +89,7 @@ const route = [
   },
   {
     path: "/message",
-    component: AppLayout,
+    component: () => import(`../layout/AppLayout.vue`),
     redirect: "/message/inbox/unreadMessage",
     children: [
       {

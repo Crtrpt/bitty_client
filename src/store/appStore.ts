@@ -1,6 +1,11 @@
 import { defineStore } from "pinia";
 import api from "../api/api";
-import { mqttInit, mqttSubject, mqttPublish } from "../api/mqtt";
+import {
+  mqttInit,
+  mqttSubject,
+  mqttPublish,
+  mqttUnsubscribe,
+} from "../api/mqtt";
 
 export const appStore = defineStore("appStore", {
   state: () => {
@@ -32,6 +37,7 @@ export const appStore = defineStore("appStore", {
       //聊天列表
       sessionList: [],
       sessionMap: new Map(),
+      userSessionMap: new Map(),
       userMap: new Map(),
       curSession: null,
       menuPath: [],
@@ -122,6 +128,12 @@ export const appStore = defineStore("appStore", {
           break;
       }
     },
+    subscribe(topic: string) {
+      mqttSubject("/session/" + topic + "/#");
+    },
+    unsubscribe(topic: string) {
+      mqttUnsubscribe("/session/" + topic + "/#");
+    },
     disconnect() {
       this.sysInfo.isConnect = false;
       console.log("disconnect================");
@@ -149,6 +161,10 @@ export const appStore = defineStore("appStore", {
     setContact(payload: any) {
       this.curContact = payload;
     },
+    setUserSessionMap(session_id: string, key: any, value: any) {
+      var userConfig = this.userSessionMap.get(session_id);
+      userConfig[key] = value;
+    },
     fetchSessionList() {
       var _this = this;
       //获取session列表
@@ -156,7 +172,18 @@ export const appStore = defineStore("appStore", {
         .get("session/list", { user_id: this.userInfo.user.user_id })
         .then((res) => {
           if (res.code == 0) {
-            _this.setSessionList(res.data);
+            _this.setSessionList(res.data || []);
+          }
+        });
+    },
+    fetchUserSessionList() {
+      console.log("获取用户session");
+      var _this = this;
+      api
+        .get("user/session", { user_id: this.userInfo.user.user_id })
+        .then((res) => {
+          if (res.code == 0) {
+            _this.setUserSessionList(res.data || []);
           }
         });
     },
@@ -171,6 +198,19 @@ export const appStore = defineStore("appStore", {
           }
         });
     },
+    //获取用户对session列表的配置信息
+    setUserSessionList(payload: any) {
+      payload.forEach((s: any) => {
+        this.userSessionMap.set(s.session_id, s);
+        //如果没有退出会话 那么 就订阅
+        if (!s.deleted_at) {
+          var topic = "/session/" + s.session_id + "/#";
+          console.log("suject: " + topic);
+          mqttSubject(topic);
+        }
+      });
+    },
+    //获取用户的session列表
     setSessionList(payload: any) {
       this.sessionList = payload;
       this.sessionList.forEach((s) => {
@@ -183,9 +223,6 @@ export const appStore = defineStore("appStore", {
         s.unread = 0;
         s.last_msg_at = Date.now();
         this.sessionMap.set(s.session_id, s);
-        var topic = "/session/" + s.session_id + "/#";
-        console.log("suject: " + topic);
-        mqttSubject(topic);
       });
     },
     setContactList(payload: any) {
