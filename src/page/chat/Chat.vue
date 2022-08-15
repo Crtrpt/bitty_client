@@ -3,13 +3,17 @@
     <div class="px-2 py-2 h-12 flex items-center border-b flex-shrink-0">
 
 
-      <router-link :to="{
+      <router-link class="flex-grow" :to="{
         path: './profile',
       }">
 
         <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="comments" />
         {{ this.store.curSession?.name || "加载中..." }}
       </router-link>
+
+      <!-- <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
+        icon="fa-solid fa-ellipsis-vertical" /> -->
+
     </div>
 
     <ChatList ref="chatlist" class="flex-grow p-2 overflow-scroll" :data="this.store.curSession?.chat || {}"></ChatList>

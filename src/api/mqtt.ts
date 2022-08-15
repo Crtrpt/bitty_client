@@ -19,10 +19,11 @@ export const mqttSubject = (topic: string) => {
 };
 
 export const mqttPublish = (topic: string, payload: any) => {
-  console.log("取消订阅" + topic);
+  console.log("发布" + topic);
   client.publish(topic, payload);
 };
 
 export const mqttUnsubscribe = (topic: string) => {
+  console.log("取消订阅" + topic);
   client.unsubscribe(topic);
 };
