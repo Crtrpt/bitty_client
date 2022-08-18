@@ -92,6 +92,7 @@ export default {
       api.post("auth/login", this.form).then((res) => {
         if (res.code == 0) {
           _this.setLogin(res.data);
+          api.headers["Token"] = res.data.token
           _this.$router.push({
             path: "my/profile",
           });

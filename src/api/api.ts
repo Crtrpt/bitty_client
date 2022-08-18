@@ -35,7 +35,6 @@ export default class api {
     // headers["Content-Type"] = "multipart/form-data; boundary=something";
     delete headers["Content-Type"];
     var form = new FormData();
-    console.log(param);
 
     for (const name in param) {
       form.append(name, param[name]);

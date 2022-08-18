@@ -12,6 +12,7 @@ export const appStore = defineStore("appStore", {
     var userinfo = null;
     try {
       userinfo = JSON.parse(window.localStorage.getItem("auth")!);
+      api.headers["Token"] = userinfo.token;
     } catch (e) {}
 
     return {
@@ -31,6 +32,8 @@ export const appStore = defineStore("appStore", {
         allMultipleAccountsLogin: true,
         language: "en",
       },
+      //群组列表
+      groupList: [],
       //联系人列表
       contactList: [],
       curContact: null,
@@ -198,12 +201,24 @@ export const appStore = defineStore("appStore", {
           }
         });
     },
+    fetchGroupList() {
+      var _this = this;
+      //获取群组列表
+      api
+        .get("group/list", { user_id: this.userInfo.user.user_id })
+        .then((res) => {
+          if (res.code == 0) {
+            _this.groupList = res.data;
+          }
+        });
+    },
     //获取用户对session列表的配置信息
     setUserSessionList(payload: any) {
       payload.forEach((s: any) => {
         this.userSessionMap.set(s.session_id, s);
         //如果没有退出会话 那么 就订阅
-        if (!s.deleted_at) {
+
+        if (!s.suspend) {
           var topic = "/session/" + s.session_id + "/#";
           console.log("suject: " + topic);
           mqttSubject(topic);

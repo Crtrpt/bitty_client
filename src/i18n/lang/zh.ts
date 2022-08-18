@@ -30,6 +30,10 @@ const zh = {
   code: "验证码:",
   confirm_reset_password: "确认重置",
   get_code: "获取验证码",
+  group_name: "群组名称",
+  group_description: "群组描述",
+  group_name_placeholder: "群组名称",
+  group_description_placeholder: "群组描述",
 };
 
 export default zh;

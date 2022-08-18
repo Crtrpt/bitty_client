@@ -49,6 +49,26 @@ const route = [
           },
         ],
       },
+      {
+        path: "/group",
+        component: () => import(`../page/group/Index.vue`),
+        children: [
+          {
+            path: "create",
+            component: () => import(`../page/group/Create.vue`),
+          },
+          {
+            path: ":id",
+            component: () => import(`../page/group/Info.vue`),
+            children: [
+              {
+                path: "profile",
+                component: () => import(`../page/group/Profile.vue`),
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   {

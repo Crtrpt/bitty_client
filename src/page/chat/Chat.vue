@@ -11,8 +11,14 @@
         {{ this.store.curSession?.name || "加载中..." }}
       </router-link>
 
-      <!-- <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
-        icon="fa-solid fa-ellipsis-vertical" /> -->
+
+      <router-link :to="{
+        path: './profile',
+      }">
+        <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
+          icon="fa-solid fa-ellipsis-vertical" />
+      </router-link>
+
 
     </div>
 

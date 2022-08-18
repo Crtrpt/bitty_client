@@ -29,7 +29,7 @@
       }
     ">
       <font-awesome-icon class="w-5 cursor-pointer hover:text-gray-800" icon="message" :class="{
-        'text-blue-500': active == 'chat',
+        'text-blue-500': active == 'session',
       }" />
     </a>
     <a class="h-10 flex-shrink-0" @click="
@@ -37,8 +37,19 @@
         $router.push({ path: '/contact' });
       }
     ">
-      <font-awesome-icon class="w-5 cursor-pointer" icon="user-group" :class="{
+
+      <font-awesome-icon class="w-5 cursor-pointer" icon="fa-solid fa-address-card" :class="{
         'text-blue-500': active == 'contact',
+      }" />
+    </a>
+    <a class="h-10 flex-shrink-0" @click="
+      () => {
+        $router.push({ path: '/group' });
+      }
+    ">
+
+      <font-awesome-icon class="w-5 cursor-pointer" icon="fa-solid fa-user-group" :class="{
+        'text-blue-500': active == 'group',
       }" />
     </a>
     <div class="flex flex-col-reverse flex-grow items-center">

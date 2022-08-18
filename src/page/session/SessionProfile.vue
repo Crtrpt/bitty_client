@@ -68,7 +68,12 @@ export default {
       });
     },
     toggleSuspendSession(value) {
-      this.store.subscribe(this.$route.params.id);
+      if (!value) {
+        this.store.subscribe(this.$route.params.id);
+      } else {
+        this.store.unsubscribe(this.$route.params.id);
+      }
+
       api.post("session/toggle_suspend", {
         session_id: this.$route.params.id,
         user_id: this.store.userInfo.user.user_id,

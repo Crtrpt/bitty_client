@@ -17,6 +17,7 @@ export default {
       this.store.fetchSessionList();
       this.store.fetchUserSessionList();
       this.store.fetchContactList();
+      this.store.fetchGroupList();
       this.store.mqttInit();
     }
   },

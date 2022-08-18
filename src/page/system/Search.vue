@@ -32,12 +32,14 @@
                             </div>
                         </div>
                         <div class="action mt-5 flex text-xs text-white">
-                            <!-- <div class="   rounded cursor-pointer    whitespace-nowrap  px-2 py-1  mr-2 bg-blue-400 ">
-                                    发起聊天
-                                </div> -->
+
                             <div class="rounded cursor-pointer whitespace-nowrap px-2 py-1 mr-2 bg-blue-400"
                                 @click="addEndpoint(i)">
                                 加为好友
+                            </div>
+                            <div v-if="i.allow_anon_session"
+                                class="   rounded cursor-pointer    whitespace-nowrap  px-2 py-1  mr-2 bg-blue-400 ">
+                                发起聊天
                             </div>
                         </div>
                     </div>
