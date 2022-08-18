@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import api from '../../api/api'
+import { appStore } from '../../store/appStore';
 
 export default {
     name: "CreateGroup",
@@ -58,11 +59,16 @@ export default {
             }
         }
     },
+    setup() {
+        const store = appStore();
+        return { store };
+    },
     methods: {
         create() {
+            var _this = this;
             api.post("group/create", this.form).then(res => {
                 if (res.code == 0) {
-                    alert("创建群组成功")
+                    _this.store.fetchGroupList();
                 }
             })
         },

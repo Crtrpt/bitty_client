@@ -4,7 +4,7 @@
 
             <div class="flex justify-center">
                 <div>群组</div>
-                <div>({{ store.groupList.length }})</div>
+                <div>({{ store.groupList.size || 0 }})</div>
             </div>
 
             <div class="flex justify-center">
@@ -22,7 +22,7 @@
         <Search v-if="displaySearch" :kewords="kewords" class="h-12"></Search>
         <div v-for="i in store.groupList" :key="i" class="flex hover:bg-gray-200" @click="
             () => {
-                $router.push({ path: '/contact/' + i.group.user_id + '/profile' });
+                $router.push({ path: '/group/' + i.group.group_id + '/profile' });
             }
         ">
             {{ i.group_id }}

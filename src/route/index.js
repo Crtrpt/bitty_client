@@ -67,6 +67,10 @@ const route = [
               },
             ],
           },
+          {
+            path: "",
+            component: () => import(`../page/group/Create.vue`),
+          },
         ],
       },
     ],

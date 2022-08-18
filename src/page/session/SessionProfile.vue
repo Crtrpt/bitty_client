@@ -21,11 +21,13 @@
       <div class="action  mt-4 flex  flex-col" v-if="config">
         <!-- {{ session.user }} -->
         <a v-if="!config.suspend"
-          class="border px-2  py-1 my-1  rounded text-red-500  hover:text-red-600 cursor-pointer"
+          class="border px-2  py-1 my-1  rounded text-yellow-500  hover:text-yellow-600 cursor-pointer"
           @click="toggleSuspendSession(true)">挂起会话</a>
         <a v-if="config.suspend"
           class="border px-2  py-1 my-1 rounded text-green-500  hover:text-green-600 cursor-pointer"
           @click="toggleSuspendSession(false)">恢复会话</a>
+        <a class="border px-2  py-1 my-1 rounded text-red-500  hover:text-red-600 cursor-pointer"
+          @click="removeSession()">退出会话</a>
       </div>
     </div>
   </div>
@@ -64,6 +66,17 @@ export default {
       }).then(res => {
         if (res.code == 0) {
           this.members = res.data.member;
+        }
+      });
+    },
+    removeSession() {
+      this.store.unsubscribe(this.$route.params.id);
+      api.post("session/remove", {
+        session_id: this.$route.params.id,
+        user_id: this.store.userInfo.user.user_id,
+      }).then(res => {
+        if (res.code == 0) {
+          //删除本地session
         }
       });
     },

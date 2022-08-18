@@ -28,6 +28,7 @@ const en = {
   reset_password: "Reset password",
   confirm_reset_password: "Reset",
   get_code: "Get Code",
+  group_profile: "Group Profile",
 };
 
 export default en;

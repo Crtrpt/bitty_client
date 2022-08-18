@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:w-60 md:w-80 bg-gray-100 border-r flex-shrink-0">
+  <div class="sm:w-60 md:w-80 flex flex-col bg-gray-100 border-r flex-shrink-0">
     <div class="px-2 h-12 text-base  bg-gray-50 border-b text-gray-500 flex  justify-between items-center">
 
       <div class="flex justify-center items-center">
@@ -22,15 +22,17 @@
     </div>
     <SessionSearch v-if="displaySearch" :kewords="kewords" class="h-12"></SessionSearch>
 
-    <div v-for="i in store.sessionList" :key="i" class="flex hover:bg-gray-200" :class="{
-      'bg-gray-300': active == i.session_id,
-    }" @click="
+    <div class="flex-grow overflow-x-auto">
+      <div v-for="i in store.sessionList" :key="i" class="flex hover:bg-gray-200" :class="{
+        'bg-gray-300': active == i.session_id,
+      }" @click="
   () => {
     store.setChat(i);
     $router.push({ path: '/session/' + i.session_id + '/chat' });
   }
 ">
-      <SessionItem :data="i"></SessionItem>
+        <SessionItem :data="i"></SessionItem>
+      </div>
     </div>
   </div>
 </template>
