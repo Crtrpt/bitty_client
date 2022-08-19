@@ -38,11 +38,7 @@ export default {
           console.log(f);
           const res = await api.upload("asset/uploadImage", {
             file: file
-          }).then(res => {
-            if (res.code != 0) {
-              this.error("文件上传出错" + res.msg)
-            }
-          })
+          });
 
           if (res.code == 0) {
             var payload = {
@@ -59,6 +55,8 @@ export default {
               created_at: Date.now()
             };
             this.store.send("/session/" + this.store.curSession.session_id + "/chat", payload);
+          } else {
+            this.error("文件上传出错" + res.msg)
           }
         }
       })
