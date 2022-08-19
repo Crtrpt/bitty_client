@@ -29,7 +29,7 @@ const route = [
           },
           {
             path: "",
-            component: () => import(`../page/system/Search.vue`),
+            component: () => import(`../page/contact/Search.vue`),
           },
         ],
       },
@@ -47,6 +47,10 @@ const route = [
               },
             ],
           },
+          {
+            path: "",
+            component: () => import(`../page/contact/Search.vue`),
+          }
         ],
       },
       {
@@ -69,68 +73,49 @@ const route = [
           },
           {
             path: "",
-            component: () => import(`../page/group/Create.vue`),
+            component: () => import(`../page/group/GroupSearch.vue`),
           },
         ],
       },
-    ],
-  },
-  {
-    path: "/my",
-    meta: {
-      name: "my",
-    },
-    component: () => import(`../layout/AppLayout.vue`),
-    children: [
       {
-        path: "profile",
-        component: () => import(`../page/my/Profile.vue`),
-      },
-    ],
-  },
-  {
-    path: "/search",
-    component: () => import(`../layout/AppLayout.vue`),
-    meta: {
-      name: "home",
-    },
-    children: [
-      {
-        path: "",
-        component: () => import(`../page/system/Search.vue`),
-      },
-    ],
-  },
-  {
-    path: "/setting",
-    component: () => import(`../layout/AppLayout.vue`),
-    children: [
-      {
-        path: "",
-        component: () => import(`../page/system/Setting.vue`),
-      },
-    ],
-  },
-  {
-    path: "/message",
-    component: () => import(`../layout/AppLayout.vue`),
-    redirect: "/message/inbox/unreadMessage",
-    children: [
-      {
-        path: "inbox",
-        name: "inbox",
-        component: () => import(`../page/message/Inbox.vue`),
+        path: "/account",
+        meta: {
+          name: "account",
+        },
+        component: () => import(`../page/account/Index.vue`),
         children: [
           {
-            path: "allMessage",
+            path: "setting",
+            component: () => import(`../page/account/Setting.vue`),
+          },
+          {
+            path: "profile",
+            component: () => import(`../page/account/Profile.vue`),
+          },
+
+        ]
+      },
+      {
+        path: "/message",
+        meta: {
+          name: "message",
+        },
+        component: () => import(`../page/message/Index.vue`),
+        children: [
+          {
+            path: "all",
             component: () => import(`../page/message/AllMessage.vue`),
           },
           {
-            path: "unreadMessage",
+            path: "unread",
             component: () => import(`../page/message/UnreadMessage.vue`),
           },
-        ],
-      },
+          {
+            path: "",
+            component: () => import(`../page/message/AllMessage.vue`),
+          },
+        ]
+      }
     ],
   },
   {

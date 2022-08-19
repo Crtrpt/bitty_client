@@ -5,13 +5,13 @@
       <div
         class=" relative shadow  flex-shrink-0 rounded-full bg-white p-2 m-2 w-12 h-12 cursor-pointer hover:shadow-xl border-4 border-white"
         :class="{
-          'shadow-md': active == 'my',
+          'shadow-md': active == 'account',
         }" :style="{
   backgroundImage: 'url(' + store.userInfo.user.avatar + ')',
   backgroundSize: 'cover',
 }" @click="
   () => {
-    $router.push({ path: '/my/profile' });
+    $router.push({ path: '/account/profile' });
   }
 ">
 
@@ -38,7 +38,7 @@
       }
     ">
 
-      <font-awesome-icon class="w-5 cursor-pointer" icon="fa-solid fa-address-card" :class="{
+      <font-awesome-icon class="w-5 cursor-pointer" icon="user" :class="{
         'text-blue-500': active == 'contact',
       }" />
     </a>
@@ -60,15 +60,7 @@
       ">
         <font-awesome-icon class="w-5 cursor-pointer" icon="arrow-right-from-bracket" />
       </a>
-      <a class="h-10">
-        <font-awesome-icon class="w-5 cursor-pointer" icon="bars" :class="{
-          'text-blue-500': active == 'setting',
-        }" @click="
-  () => {
-    $router.push({ path: '/setting' });
-  }
-" />
-      </a>
+
       <a class="h-10">
         <font-awesome-icon class="w-5 cursor-pointer" icon="bell" :class="{
           'text-blue-500': active == 'message',
@@ -77,15 +69,6 @@
     $router.push({ path: '/message' });
   }
 " />
-      </a>
-      <a class="h-10" @click="
-        () => {
-          $router.push({ path: '/search' });
-        }
-      ">
-        <font-awesome-icon class="w-5 cursor-pointer" icon="search" :class="{
-          'text-blue-500': active == 'search',
-        }" />
       </a>
     </div>
   </div>

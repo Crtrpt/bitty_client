@@ -54,7 +54,13 @@ export default {
                 id: m.id,
                 type: m.type,
                 action: ops,
-            });
+            }).then(res => {
+                if (res.code == 0) {
+                    this.info("操作成功")
+                } else {
+                    this.error(res.msg);
+                }
+            })
         },
     },
     setup() {

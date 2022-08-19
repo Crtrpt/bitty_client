@@ -2,7 +2,8 @@
     <div class="w-80 bg-gray-100 border-r flex-shrink-0">
         <div class="px-2 h-12 text-base  bg-gray-50 border-b text-gray-500 flex  justify-between items-center">
 
-            <div class="flex justify-center">
+            <div class="flex justify-center items-center">
+                <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="user" />
                 <div>群组</div>
                 <div>({{ store.groupList.size || 0 }})</div>
             </div>
@@ -36,7 +37,7 @@
                             $router.push({ path: '/group/profile' });
                         }
                     ">
-                    <div>
+                    <div v-if="!i.group?.avatar">
                         {{ i.group?.name[0] || '' }}
                     </div>
                 </div>

@@ -1,7 +1,13 @@
 <template>
-  <div class="px-4">
-    <message-item :m="m" v-for="m in list" :key="m"></message-item>
+  <div class="container mx-auto flex flex-col">
+    <div class="text-3xl mt-10 px-4 mb-5">全部消息</div>
+    <div class="  flex-grow overflow-auto">
+      <div class="px-4">
+        <message-item :m="m" v-for="m in list" :key="m"></message-item>
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script lang="ts">

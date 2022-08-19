@@ -1,6 +1,11 @@
 <template>
-    <div class="px-4">
-        <message-item :m="m" v-for="m in list" :key="m"></message-item>
+    <div class="container mx-auto">
+        <div class="text-3xl mt-10 px-4 mb-5">未读消息</div>
+        <div>
+            <div class="px-4">
+                <message-item :m="m" v-for="m in list" :key="m"></message-item>
+            </div>
+        </div>
     </div>
 </template>
 

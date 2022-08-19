@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import SessionList from "./SessionList.vue";
-import Search from "../system/Search.vue";
 export default {
   name: "SessionView",
   watch: {
@@ -28,6 +27,6 @@ export default {
     this.active = this.$route.params.id;
   },
 
-  components: { SessionList, Search },
+  components: { SessionList },
 };
 </script>

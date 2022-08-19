@@ -93,7 +93,7 @@ export default {
           _this.setLogin(res.data);
           api.headers["Token"] = res.data.token;
           _this.$router.push({
-            path: "my/profile",
+            path: "account/profile",
           });
         }
         else {
