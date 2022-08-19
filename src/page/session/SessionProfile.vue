@@ -11,10 +11,10 @@
     <div class="flex flex-col justify-center items-center">
       <!-- 成员列表 -->
       <div class="p-2 flex flex-row justify-center items-center">
-        <avatar class=" h-12 w-12" v-for="m in members || []" :key="m" :user_id="m.user_id">
+        <avatar class="  w-12" v-for="m in members || []" :key="m" :user_id="m.user_id" :displayName="true">
         </avatar>
       </div>
-      <div class="param  text-sm text-gray-500 mt-4">
+      <div class="param  text-sm text-gray-500 mt-0">
         <div>创建于{{ prttyDate(session.session?.created_at ?? 0) }}</div>
       </div>
       <!-- 配置列表 -->
@@ -77,13 +77,16 @@ export default {
       }).then(res => {
         if (res.code == 0) {
           //删除本地session
+          this.success("删除会话成功")
         }
       });
     },
     toggleSuspendSession(value) {
       if (!value) {
+
         this.store.subscribe(this.$route.params.id);
       } else {
+
         this.store.unsubscribe(this.$route.params.id);
       }
 

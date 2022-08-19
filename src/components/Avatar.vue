@@ -1,11 +1,18 @@
 <template>
-    <div class="rounded-full  w-8 h-8 mx-2 cursor-pointer hover:shadow-md flex-grow-0 flex-shrink-0" :style="{
-        backgroundImage: ' url(' + user?.avatar + ')', backgroundSize: 'cover',
-    }" @click="
+    <div class=" flex  flex-col justify-center ">
+
+
+        <div class="rounded-full  w-8 h-8 mx-2 cursor-pointer hover:shadow-md flex-grow-0 flex-shrink-0" :style="{
+            backgroundImage: ' url(' + user?.avatar + ')', backgroundSize: 'cover',
+        }" @click="
     () => {
         $router.push({ path: '/contact/' + user.user_id + '/profile' });
     }
 ">
+        </div>
+        <div v-if="displayName" class=" w-12 overflow-hidden h-5 text-gray-400 text-xs mt-2 text-center">
+            {{ user?.nick_name }}
+        </div>
     </div>
 </template>
 
@@ -17,7 +24,8 @@ import { appStore } from "../store/appStore";
 export default {
     name: "Avatar",
     props: {
-        user_id: String
+        user_id: String,
+        displayName: Boolean
     },
     setup() {
         const store = appStore();

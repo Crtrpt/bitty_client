@@ -26,19 +26,24 @@
             }
         ">
             {{ i.group_id }}
-            <div class="cell p-2 flex flex-grow cursor-pointer justify-center items-center">
+            <div class="cell p-2 flex flex-grow cursor-pointer justify-center items-center ">
                 <div :style="{
                     backgroundImage: 'url(' + i.group?.avatar + ')',
                     backgroundSize: 'cover',
-                }" class="rounded-full w-8 h-8 flex-grow-0 flex-shrink-0" :src="i.group?.avatar || ''" @click="
-    () => {
-        $router.push({ path: '/group/profile' });
-    }
-"></div>
+                }" class="flex items-center justify-center border rounded-full w-10 h-10 flex-grow-0 flex-shrink-0"
+                    :src="i.group?.avatar || ''" @click="
+                        () => {
+                            $router.push({ path: '/group/profile' });
+                        }
+                    ">
+                    <div>
+                        {{ i.group?.name[0] || '' }}
+                    </div>
+                </div>
                 <div class="mx-2 flex-grow overflow-hidden flex-shrink">
                     <div class="text-base">{{ i.group?.name }}</div>
                     <div class="text-xs text-gray-400 whitespace-nowrap w-0 h-4">
-                        {{ i.group?.status || "" }}
+                        {{ i.group?.description || "" }}
                     </div>
                 </div>
             </div>

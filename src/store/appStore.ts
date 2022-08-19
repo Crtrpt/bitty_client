@@ -20,6 +20,7 @@ export const appStore = defineStore("appStore", {
       userInfo: userinfo,
       sysInfo: {
         isConnect: false,
+        alert: [],
       },
       //系统配置
       config: {

@@ -1,8 +1,9 @@
 console.log(import.meta.env);
 export default class api {
-  static url: string = import.meta.env.VITE_API_BASE_URL;
+  static url: string = "/api/v1/";
   static headers = {
     "Content-Type": "application/json",
+    Token: "",
     Platform: import.meta.env.VITE_PLATFORM,
     Version: import.meta.env.VITE_VERSION,
   };

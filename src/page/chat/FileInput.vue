@@ -36,8 +36,13 @@ export default {
         if (f.kind == "file") {
           const file = await f.getFile();
           console.log(file);
+
           const res = await api.upload("asset/uploadFile", {
             file: file
+          }).then((res) => {
+            if (res.code != 0) {
+              this.error("文件上传出错" + res.msg)
+            }
           })
           if (res.code == 0) {
             console.log(f.size);

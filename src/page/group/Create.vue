@@ -68,13 +68,12 @@ export default {
             var _this = this;
             api.post("group/create", this.form).then(res => {
                 if (res.code == 0) {
+                    this.info("群组创建成功")
                     _this.store.fetchGroupList();
                 }
             })
         },
         uploadGroupAvatar() {
-
-            var _this = this;
             const preview = this.$refs.groupAvatarImg as HTMLImageElement;
             console.log(preview);
             const file = this.$refs.groupAvatarRef.files[0];
@@ -84,7 +83,7 @@ export default {
                 preview.src = reader.result;
             }, false);
             if (file) {
-                console.log("上传文件");
+                this.info("文件开始上传")
                 api
                     .upload("asset/uploadImage", {
                         file: file,

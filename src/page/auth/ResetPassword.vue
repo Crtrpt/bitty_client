@@ -77,9 +77,9 @@ export default {
         email: this.form.email
       }).then((res) => {
         if (res.code == 0) {
-          alert("验证码已发送请查收")
+          this.alert("验证码已发送请查收")
         } else {
-          alert(res.msg)
+          this.alert(res.msg)
         }
       });
     },
@@ -88,7 +88,7 @@ export default {
 
       api.post("auth/resetpassword", this.form).then((res) => {
         if (res.code == 0) {
-          alert("重置秘密成功")
+          this.alert("重置秘密成功")
         }
       });
     },

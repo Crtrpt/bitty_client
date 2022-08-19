@@ -81,7 +81,7 @@ export default {
                 })
                 .then((res) => {
                     if (res.code == 0) {
-                        alert("删除成功");
+                        this.alert("删除成功");
                     }
                 });
         },

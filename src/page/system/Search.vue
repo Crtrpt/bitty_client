@@ -80,9 +80,9 @@ export default {
                 })
                 .then((res) => {
                     if (res.code == 0) {
-                        alert("已经发送好友申请");
+                        this.alert("已经发送好友申请");
                     } else {
-                        alert(res.msg);
+                        this.alert(res.msg);
                     }
                 });
         },

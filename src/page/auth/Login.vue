@@ -26,14 +26,10 @@
 
         <div class="flex mt-2 items-center text-sm">
           <input type="checkbox" v-model="form.remember_account" />
-
           <div class="ml-4">
             {{ $t("remember_account") }}
           </div>
         </div>
-
-
-
       </div>
 
 
@@ -82,20 +78,26 @@ export default {
   },
   methods: {
     ...mapActions(appStore, ["setLogin"]),
-
     login() {
       let _this = this;
+      if (this.form.account == "") {
+        this.error("账户不能为空");
+        return;
+      }
       if (!this.form.agreement) {
-        alert("需要同意许可协议才能继续");
+        this.alert("需要同意许可协议才能继续", { type: "error" });
         return;
       }
       api.post("auth/login", this.form).then((res) => {
         if (res.code == 0) {
           _this.setLogin(res.data);
-          api.headers["Token"] = res.data.token
+          api.headers["Token"] = res.data.token;
           _this.$router.push({
             path: "my/profile",
           });
+        }
+        else {
+          this.alert(res.msg, { type: "error" });
         }
       });
     },
@@ -105,9 +107,10 @@ export default {
         email: this.form.email
       }).then((res) => {
         if (res.code == 0) {
-          alert("验证码已发送请查收")
-        } else {
-          alert(res.msg)
+          this.alert("验证码已发送请查收");
+        }
+        else {
+          this.alert(res.msg);
         }
       });
     },
@@ -115,6 +118,7 @@ export default {
   mounted() { },
   data() {
     return {
+      displayDiglog: true,
       form: {
         account: "",
         password: "",

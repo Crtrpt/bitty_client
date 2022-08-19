@@ -1,13 +1,16 @@
 <template>
   <div class="cell p-2 flex flex-grow cursor-pointer items-center justify-center">
 
-    <div class=" rounded-full relative w-8 h-8 flex-grow-0 flex-shrink-0" :style="{
-      backgroundImage: 'url(' + data.avatar + ')',
-      backgroundSize: 'cover',
-    }" @click="() => {
+    <div class=" rounded-full relative  w-10 h-10 flex-grow-0 flex-shrink-0 flex items-center justify-center border"
+      :style="{
+        backgroundImage: 'url(' + data.avatar + ')',
+        backgroundSize: 'cover',
+      }" @click="() => {
   $router.push({ path: '/user/profile' });
 }">
-
+      <div v-if="data.avatar == ''">
+        {{ data.name[0] || '' }}
+      </div>
       <font-awesome-icon v-if="config.suspend" class="absolute -bottom-2 -right-2 w-3  cursor-pointer text-gray-600"
         icon="ban" />
       <div class=" text-center absolute -top-3 -right-6" v-if="data.unread > 0">

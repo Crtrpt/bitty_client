@@ -79,7 +79,8 @@ export default {
                 })
                 .then((res) => {
                     if (res.code == 0) {
-                        alert("删除成功");
+                        this.success("删除成功");
+                        this.store.fetchGroupList();
                     }
                 });
         },

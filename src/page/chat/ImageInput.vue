@@ -38,7 +38,12 @@ export default {
           console.log(f);
           const res = await api.upload("asset/uploadImage", {
             file: file
+          }).then(res => {
+            if (res.code != 0) {
+              this.error("文件上传出错" + res.msg)
+            }
           })
+
           if (res.code == 0) {
             var payload = {
               sender_id: this.store.userInfo.user.user_id,

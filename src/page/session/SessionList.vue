@@ -1,6 +1,7 @@
 <template>
   <div class="sm:w-60 md:w-80 flex flex-col bg-gray-100 border-r flex-shrink-0">
-    <div class="px-2 h-12 text-base  bg-gray-50 border-b text-gray-500 flex  justify-between items-center">
+    <div
+      class=" flex-shrink-0 px-2 h-12 text-base  bg-gray-50 border-b text-gray-500 flex  justify-between items-center">
 
       <div class="flex justify-center items-center">
         <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="message" />
