@@ -9,7 +9,7 @@
     </div>
     <div class="p-2  flex-grow">
       <textarea class=" border-none  w-full h-full  " v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
-        @keyup.enter="send()"></textarea>
+        @keyup.enter="send"></textarea>
     </div>
   </div>
 </template>
@@ -32,7 +32,10 @@ export default {
     };
   },
   methods: {
-    send() {
+    send(e: Event) {
+      if (!e.ctrlKey) {
+        return
+      }
       var payload = {
         sender_id: this.store.userInfo.user.user_id,
         session_id: this.store.curSession.session_id,

@@ -12,10 +12,11 @@
         <font-awesome-icon class="w-5 pr-2 cursor-pointer  hover:text-gray-900" :icon="
         started ? 'stop' : 'play'" @click="toggleRecord()" />
         <audio controls ref="player"></audio>
-        <div @click="uploadFile"
+        <div @click="uploadFile" style="word-break: keep-all"
           class="border   bg-blue-500 hover:bg-blue-600 cursor-pointer text-white px-2 py-1    break-normal text-xs  rounded">
+
           发送</div>
-        <div
+        <div @click="close()" style="word-break: keep-all"
           class="border bg-red-500 hover:bg-red -600 cursor-pointer text-white px-2 py-1  break-normal text-xs  rounded ">
           删除</div>
 
@@ -66,6 +67,9 @@ const toggleRecord = async () => {
 }
 
 const uploadFile = async () => {
+  if (blob == null) {
+    return;
+  }
   const res = await api.upload("asset/uploadFile", {
     file: blob
   });

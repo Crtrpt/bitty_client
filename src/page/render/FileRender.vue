@@ -16,7 +16,6 @@
                 {{ prttySize(data.payload.size) }}
             </div>
         </div>
-s
         <video class="  flex-grow" v-if="data.payload.type == 'video'" :src="data.payload.url" controls>
 
         </video>
