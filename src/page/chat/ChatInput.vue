@@ -4,6 +4,8 @@
       <font-awesome-icon class="w-5  pr-2 cursor-pointer  hover:text-gray-900" icon="fa-solid fa-font" />
       <ImageInput :sn="sn"></ImageInput>
       <FileInput :sn="sn"></FileInput>
+      <MapInput :sn="sn"></MapInput>
+      <AudioInput :sn="sn"></AudioInput>
     </div>
     <div class="p-2  flex-grow">
       <textarea class=" border-none  w-full h-full  " v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
@@ -16,6 +18,10 @@
 import { appStore } from "../../store/appStore";
 import ImageInput from "./ImageInput.vue";
 import FileInput from "./FileInput.vue";
+import MapInput from "./MapInput.vue";
+import AudioInput from "./AudioInput.vue";
+
+import { chat_text_type } from "../../const";
 export default {
   name: "ChatInput",
   data() {
@@ -32,7 +38,7 @@ export default {
         session_id: this.store.curSession.session_id,
         content: this.draft,
         payload: "",
-        type: this.type,
+        type: chat_text_type,
         sn: this.sn++,
         created_at: Date.now()
       };
@@ -44,6 +50,6 @@ export default {
     const store = appStore();
     return { store };
   },
-  components: { ImageInput, FileInput }
+  components: { ImageInput, FileInput, MapInput, AudioInput }
 };
 </script>

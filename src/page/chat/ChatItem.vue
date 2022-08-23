@@ -17,11 +17,12 @@ import { appStore } from "../../store/appStore";
 import TextRender from "../render/TextRender.vue";
 import ImageRender from "../render/ImageRender.vue";
 import FileRender from "../render/FileRender.vue";
+import MapRender from "../render/MapRender.vue";
 export default {
     name: "ChatItem",
     data() {
         return {
-            renderMap: ["text-render", "image-render", "file-render"]
+            renderMap: ["text-render", "image-render", "file-render", "map-render"]
         }
     },
     setup() {
@@ -31,6 +32,6 @@ export default {
     props: {
         data: Object
     },
-    components: { TextRender, ImageRender, FileRender }
+    components: { TextRender, ImageRender, FileRender, MapRender }
 };
 </script>

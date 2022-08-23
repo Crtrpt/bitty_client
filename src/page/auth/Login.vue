@@ -14,7 +14,7 @@
       </label>
       <div class="block">
         <div class="flex mt-2 items-center">
-          <input type="checkbox" class="input" v-model="form.agreement" />
+          <input type="checkbox" class="input  rounded" v-model="form.agreement" />
 
           <div class="ml-4 text-sm">
             {{ $t("i_agree") }}
@@ -25,7 +25,7 @@
 
 
         <div class="flex mt-2 items-center text-sm">
-          <input type="checkbox" v-model="form.remember_account" />
+          <input type="checkbox" v-model="form.remember_account" class="input rounded" />
           <div class="ml-4">
             {{ $t("remember_account") }}
           </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto">
-        <div class="text-3xl mt-7 px-4 mb-5">
-            {{ $t("search") }}
+        <div class="text-3xl mt-10 px-4 mb-5">
+            {{ $t("group_search") }}
         </div>
         <div class="w-full flex items-center justify-center pb-4">
             <div class="border rounded-l-full hover:shadow-inner border-r-0">
@@ -10,7 +10,7 @@
             </div>
             <div class="border rounded-r-full px-4 py-2 bg-blue-500 text-white cursor-pointer hover:shadow"
                 @click="search">
-                {{ $t("search") }}
+                {{ $t("group_search") }}
                 <font-awesome-icon class="w-5 cursor-pointer" icon="search" />
             </div>
         </div>
@@ -69,7 +69,7 @@ export default {
         addEndpoint(u) {
             var _this = this;
             api
-                .post("group/add", {
+                .post("group/join", {
                     type: 1,
                     user_id: _this.store.userInfo.user.user_id,
                     target_id: u.user_id,

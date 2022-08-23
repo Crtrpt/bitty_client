@@ -15,8 +15,9 @@
                     }
                 " class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
                     icon="add" />
-                <font-awesome-icon @click="() => displaySearch = !displaySearch"
-                    class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
+                <font-awesome-icon @click="() => {
+                    $router.push({ path: '/group/search' });
+                }" class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
                     icon="search" />
             </div>
         </div>
@@ -38,7 +39,8 @@
                         }
                     ">
                     <div v-if="!i.group?.avatar">
-                        {{ i.group?.name[0] || '' }}
+                        {{ i.group }}
+                        <!-- {{ i.group?.name[0] ?? '' }} -->
                     </div>
                 </div>
                 <div class="mx-2 flex-grow overflow-hidden flex-shrink">
@@ -55,7 +57,7 @@
 <script lang="ts">
 import Search from "./Search.vue";
 import { appStore } from "../../store/appStore";
-import api from "../../api/api";
+
 export default {
     name: "GroupList",
     data() {

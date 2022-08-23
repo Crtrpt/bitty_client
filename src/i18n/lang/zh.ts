@@ -35,6 +35,7 @@ const zh = {
   group_name_placeholder: "群组名称",
   group_description_placeholder: "群组描述",
   group_profile: "群组信息",
+  group_search: "群组搜索",
 };
 
 export default zh;

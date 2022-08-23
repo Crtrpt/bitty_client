@@ -1,7 +1,7 @@
 <template>
-
+  <!-- // 'blur-sm': !store.sysInfo.isConnect -->
   <div class="applayout flex flex-row grow overflow-hidden h-screen w-screen" :class="{
-    'blur-sm': !store.sysInfo.isConnect
+  
   }">
     <Header class="hover:shadow"></Header>
     <keep-alive>

@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import api from "../../api/api";
+import { chat_file_type } from "../../const";
 import { appStore } from '../../store/appStore';
 
 export default {
@@ -53,7 +54,7 @@ export default {
                 name: f.name,
                 url: res.data
               },
-              type: 2,
+              type: chat_file_type,
               sn: this.sn + 1,
               created_at: Date.now()
             };

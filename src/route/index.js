@@ -72,6 +72,10 @@ const route = [
             ],
           },
           {
+            path: "search",
+            component: () => import(`../page/group/GroupSearch.vue`),
+          },
+          {
             path: "",
             component: () => import(`../page/group/GroupSearch.vue`),
           },

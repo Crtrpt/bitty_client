@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import api from "../../api/api";
+import { chat_image_type } from '../../const';
 import { appStore } from '../../store/appStore';
 
 export default {
@@ -50,7 +51,7 @@ export default {
                 name: f.name,
                 url: res.data
               },
-              type: 1,
+              type: chat_image_type,
               sn: this.sn + 1,
               created_at: Date.now()
             };

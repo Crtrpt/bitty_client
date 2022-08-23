@@ -19,7 +19,7 @@
       </label>
       <div class="block">
         <div class="flex mt-2 items-center">
-          <input type="checkbox" v-model="form.agreement" />
+          <input type="checkbox" v-model="form.agreement" class="rounded" />
 
           <div class="ml-4">
             {{ $t("i_agree") }}
