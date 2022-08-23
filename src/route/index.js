@@ -96,7 +96,18 @@ const route = [
             path: "profile",
             component: () => import(`../page/account/Profile.vue`),
           },
-
+          {
+            path: "group",
+            component: () => import(`../page/account/GroupSetting.vue`),
+          },
+          {
+            path: "data",
+            component: () => import(`../page/account/Data.vue`),
+          },
+          {
+            path: "virtual_account",
+            component: () => import(`../page/account/VirtualAccount.vue`),
+          }
         ]
       },
       {

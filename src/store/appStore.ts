@@ -169,6 +169,13 @@ export const appStore = defineStore("appStore", {
       var userConfig = this.userSessionMap.get(session_id);
       userConfig[key] = value;
     },
+    fetchSysInfo() {
+      api.get("system/info", {}).then((res) => {
+        if (res.code == 0) {
+          this.sysInfo.conf = res.data || {};
+        }
+      });
+    },
     fetchSessionList() {
       var _this = this;
       //获取session列表

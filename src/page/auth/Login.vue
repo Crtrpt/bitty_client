@@ -39,8 +39,7 @@
             class="border p-2 px-5 rounded bg-blue-600 hover:bg-blue-700 text-white border-gray-300 hover:border-indigo-300 cursor-pointer">
             {{ $t("login_btn") }}
           </div>
-
-          <div @click="
+          <div v-if="store?.sysInfo?.conf.allow_signup ?? false" @click="
             () => {
               $router.push({
                 path: 'signup',
@@ -71,9 +70,10 @@ import api from "../../api/api";
 export default {
   name: "Login",
   setup() {
-    const appstore = appStore();
+    const store = appStore();
+
     return {
-      appStore,
+      store,
     };
   },
   methods: {

@@ -31,6 +31,7 @@ export default {
     return { store };
   },
   mounted() {
+    this.store.fetchSysInfo();
     if (this.store.userInfo) {
       this.store.fetchSessionList();
       this.store.fetchUserSessionList();

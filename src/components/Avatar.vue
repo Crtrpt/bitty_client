@@ -1,5 +1,8 @@
 <template>
-    <div class=" flex  flex-col justify-center ">
+    <div :class="{
+        ...className,
+        'flex  flex-col justify-center': true
+    }">
 
 
         <div class="rounded-full  w-8 h-8 mx-2 cursor-pointer hover:shadow-md flex-grow-0 flex-shrink-0" :style="{
@@ -24,6 +27,7 @@ import { appStore } from "../store/appStore";
 export default {
     name: "Avatar",
     props: {
+        className: Object,
         user_id: String,
         displayName: Boolean
     },

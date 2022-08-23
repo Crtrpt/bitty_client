@@ -7,7 +7,7 @@
 <script lang="ts">
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
-import "highlight.js/styles/monokai-sublime.css"
+import "highlight.js/styles/color-brewer.css"
 export default {
     props: {
         data: Object

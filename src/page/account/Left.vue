@@ -26,7 +26,22 @@
                     <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="gear" />
                     <div>账户设置</div>
                 </router-link>
-
+                <router-link :to="{ path: './group' }" class="h-14 hover:bg-gray-200 cursor-pointer flex  items-center">
+                    <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
+                        icon="user-group" />
+                    <div>群组设置</div>
+                </router-link>
+                <!-- <router-link :to="{ path: './virtual_account' }"
+                    class="h-14 hover:bg-gray-200 cursor-pointer flex  items-center">
+                    <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
+                        icon="users-rectangle" />
+                    <div>虚拟账户</div>
+                </router-link> -->
+                <!-- <router-link :to="{ path: './data' }" class="h-14 hover:bg-gray-200 cursor-pointer flex  items-center">
+                    <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800"
+                        icon="database" />
+                    <div>数据设置</div>
+                </router-link> -->
 
             </div>
         </div>
