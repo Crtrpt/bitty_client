@@ -2,8 +2,8 @@
 
   <div class="container mx-auto flex flex-col">
     <div class="flex items-baseline sticky">
-      <div class="text-3xl mt-10 px-2 pb-5 w-full">
-        数据
+      <div class="text-3xl mt-10 px-4 pb-5 w-full">
+        群组设置
       </div>
     </div>
     <div class="px-2 flex-grow overflow-auto md:w-1/2 text-sm">

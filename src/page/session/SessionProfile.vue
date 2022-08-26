@@ -90,10 +90,10 @@ export default {
         this.store.unsubscribe(this.$route.params.id);
       }
 
-      api.post("session/toggle_suspend", {
+      api.post("session/toggleSuspend", {
         session_id: this.$route.params.id,
         user_id: this.store.userInfo.user.user_id,
-        value: value
+        value: +value
       }).then(res => {
         if (res.code == 0) {
           this.store.setUserSessionMap(this.$route.params.id, "suspend", value)

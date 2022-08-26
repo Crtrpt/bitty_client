@@ -2,11 +2,11 @@
 
   <div class="container mx-auto flex flex-col">
     <div class="flex items-baseline sticky">
-      <div class="text-3xl mt-10 px-2 pb-5 w-full">
+      <div class="text-3xl mt-10 px-4 pb-5 w-full">
         {{ $t("systemConfig") }}
       </div>
     </div>
-    <div class="px-2 flex-grow overflow-auto md:w-1/2 text-sm">
+    <div class="px-4 flex-grow overflow-auto md:w-1/2 text-sm">
       <div class="border p-2 mt-2 flex flex-col  rounded">
         <div>头像</div>
         <div class="action mt-2 flex">

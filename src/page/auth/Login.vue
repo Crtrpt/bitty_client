@@ -71,10 +71,21 @@ export default {
   name: "Login",
   setup() {
     const store = appStore();
-
     return {
       store,
     };
+  },
+  watch: {
+    'form': {
+      deep: true,
+      handler(n: any) {
+        if (n.remember_account == true) {
+          window.localStorage.remember_account = this.form.account;
+        } else {
+          window.localStorage.removeItem('remember_account');
+        }
+      }
+    }
   },
   methods: {
     ...mapActions(appStore, ["setLogin"]),
@@ -90,6 +101,7 @@ export default {
       }
       api.post("auth/login", this.form).then((res) => {
         if (res.code == 0) {
+
           _this.setLogin(res.data);
           api.headers["Token"] = res.data.token;
           _this.$router.push({
@@ -115,7 +127,10 @@ export default {
       });
     },
   },
-  mounted() { },
+  mounted() {
+    this.form.account = window.localStorage.remember_account;
+    this.form.remember_account = !!this.form.account
+  },
   data() {
     return {
       displayDiglog: true,

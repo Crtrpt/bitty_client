@@ -11,7 +11,6 @@
 
 
         </div>
-        <SessionSearch v-if="displaySearch" :kewords="kewords" class="h-12"></SessionSearch>
 
         <div class="flex-grow overflow-x-auto">
             <div class="flex flex-col " :class="{}">

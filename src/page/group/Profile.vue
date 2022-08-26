@@ -33,6 +33,14 @@
                 进入群组
             </div>
 
+            <div class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
+                $router.push({
+                    path: 'setting/base'
+                })
+            }">
+                设置
+            </div>
+
             <div class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="remove">
                 删除
             </div>

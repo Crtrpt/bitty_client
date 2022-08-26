@@ -69,6 +69,25 @@ const route = [
                 path: "profile",
                 component: () => import(`../page/group/Profile.vue`),
               },
+              {
+                path: "setting",
+                component: () => import(`../page/group/Setting.vue`),
+                // redirect: "base",
+                children: [
+                  {
+                    path: "base",
+                    component: () => import(`../page/group/SettingBase.vue`),
+                  },
+                  {
+                    path: "group_users",
+                    component: () => import(`../page/group/GroupUser.vue`),
+                  },
+                  {
+                    path: "",
+                    component: () => import(`../page/group/SettingBase.vue`),
+                  }
+                ]
+              },
             ],
           },
           {

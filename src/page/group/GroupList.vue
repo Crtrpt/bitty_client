@@ -39,8 +39,8 @@
                         }
                     ">
                     <div v-if="!i.group?.avatar">
-                        {{ i.group }}
-                        <!-- {{ i.group?.name[0] ?? '' }} -->
+
+                        {{ i.group?.name[0] ?? '' }}
                     </div>
                 </div>
                 <div class="mx-2 flex-grow overflow-hidden flex-shrink">
