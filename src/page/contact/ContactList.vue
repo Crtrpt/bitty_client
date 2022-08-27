@@ -5,16 +5,16 @@
             <div class="flex justify-center items-center">
                 <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="user" />
                 <div>联系人</div>
-                <div>({{ store.sessionList.length }})</div>
+                <div>({{ store.sessionList.size||0 }})</div>
             </div>
 
             <div class="flex justify-center">
-                <font-awesome-icon @click="
+                <!-- <font-awesome-icon @click="
                     () => {
                         $router.push({ path: '/search' });
                     }
                 " class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
-                    icon="add" />
+                    icon="add" /> -->
                 <font-awesome-icon @click="() => displaySearch = !displaySearch"
                     class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
                     icon="search" />

@@ -65,19 +65,18 @@ export default {
     },
     methods: {
         create() {
-            var _this = this;
             api.post("group/create", this.form).then(res => {
                 if (res.code == 0) {
                     this.info("群组创建成功")
-                    _this.store.fetchGroupList();
+                    this.store.fetchGroupList();
+                    this.store.fetchSessionList();
+                    this.$router.push({path:"/group/"+res.data.group_id+"/profile"})
                 }
             })
         },
         uploadGroupAvatar() {
             const preview = this.$refs.groupAvatarImg as HTMLImageElement;
-            console.log(preview);
             const file = this.$refs.groupAvatarRef.files[0];
-            console.log(file);
             const reader = new FileReader();
             reader.addEventListener("load", () => {
                 preview.src = reader.result;

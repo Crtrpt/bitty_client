@@ -10,18 +10,18 @@
       </div>
 
       <div class="flex justify-center">
-        <font-awesome-icon @click="
+        <!-- <font-awesome-icon @click="
           () => {
             $router.push({ path: '/search' });
           }
         " class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
-          icon="add" />
+          icon="add" /> -->
         <font-awesome-icon @click="() => displaySearch = !displaySearch"
           class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
           icon="search" />
       </div>
     </div>
-    <SessionSearch v-if="displaySearch" :kewords="kewords" class="h-12"></SessionSearch>
+    <SessionSearch v-if="displaySearch" :keywords="keywords"  class="flex-shrink-0 "></SessionSearch>
 
     <div class="flex-grow overflow-x-auto">
       <div v-for="i in store.sessionList" :key="i" class="flex hover:bg-gray-200" :class="{

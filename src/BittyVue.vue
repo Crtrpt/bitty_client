@@ -1,6 +1,10 @@
 <template>
   <div class="w-full h-full relative">
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+  <keep-alive>
+    <component :is="Component" />
+  </keep-alive>
+</router-view>
 
     <div id="dialog" class=" ">
 
