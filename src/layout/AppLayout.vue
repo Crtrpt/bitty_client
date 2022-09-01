@@ -4,10 +4,11 @@
   
   }">
     <Header class="hover:shadow"></Header>
-    <keep-alive>
-      <router-view class="bg-gray-50">
-      </router-view>
-    </keep-alive>
+    <router-view v-slot="{ Component }">
+  <keep-alive>
+    <component :is="Component" />
+  </keep-alive>
+</router-view>
   </div>
 </template>
 <script lang="ts">

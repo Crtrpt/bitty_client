@@ -151,7 +151,7 @@ export const appStore = defineStore("appStore", {
       });
     },
     setChat(payload: any) {
-      console.log(payload);
+      // console.log(payload);
       this.curSession = payload;
       this.curSession.chat = this.curSession.chat || {
         list: [],

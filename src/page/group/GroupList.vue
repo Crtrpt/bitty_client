@@ -16,12 +16,12 @@
                 " class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
                     icon="add" />
                 <font-awesome-icon @click="() => {
-                    $router.push({ path: '/group/search' });
+                    displaySearch=!displaySearch
                 }" class="w-3 h-3 m-1 p-2 rounded-full border hover:border-blue-500 hover:text-blue-500 cursor-pointer text-gray-500"
                     icon="search" />
             </div>
         </div>
-        <Search v-if="displaySearch" :kewords="kewords" class="h-12"></Search>
+        <Search v-if="displaySearch" :kewords="keyords" class="h-12"></Search>
         <div v-for="i in store.groupList" :key="i" class="flex hover:bg-gray-200" @click="
             () => {
                 $router.push({ path: '/group/' + i.group.group_id + '/profile' });

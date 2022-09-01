@@ -10,7 +10,7 @@
 export default {
   name: "ContactSearch",
   props: {
-    kewords: Object,
+    keywords: Object,
   },
 };
 </script>
