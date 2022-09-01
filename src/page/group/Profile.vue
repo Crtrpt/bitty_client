@@ -5,7 +5,7 @@
         </div>
         <div class="w-full mx-auto flex justify-center items-center mt-4">
             <div class="ml-20 flex flex-col">
-                <div class="flex items-center">
+                <div class="flex ">
 
                     <div :style="{
                         backgroundImage: 'url(' + data.avatar + ')',
@@ -22,6 +22,12 @@
                         <div class="text-sm text-gray-500 h-10 overflow-hidden">
                             {{ data.description || "" }}
                         </div>
+                        <div class="text-xs text-gray-500  overflow-hidden">
+                            创建于: {{ data.created_at || "" }}
+                        </div>
+                        <!-- <div class="text-xs text-gray-500  overflow-hidden">
+                            成员数量: ({{ data.member_count || 0 }})
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -41,7 +47,16 @@
                 设置
             </div>
 
-            <div class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="remove">
+            <ContactSelect :open="openContactSelect" :groupId="$route.params.id"
+                @close="() => openContactSelect = false">
+            </ContactSelect>
+            <div class=" px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
+                openContactSelect = true
+            }">
+                邀请好友
+            </div>
+
+            <div class="px-4 py-2 border rounded text-red-500 mx-2 cursor-pointer hover:text-red-500" @click="remove">
                 删除
             </div>
         </div>
@@ -52,9 +67,14 @@
 
 import api from "../../api/api";
 import { appStore } from "../../store/appStore";
+import ContactSelect from './ContactSelect.vue';
+
+
 export default {
+    components: { ContactSelect },
     data() {
         return {
+            openContactSelect: false,
             data: {},
             contact: {},
         };
@@ -73,6 +93,9 @@ export default {
         },
     },
     methods: {
+        selectContact(payload) {
+            this.openContactSelect = false;
+        },
         fetchGroupInfo() {
             api
                 .get("group/profile", { group_id: this.$route.params.id })

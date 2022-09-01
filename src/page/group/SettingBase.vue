@@ -7,11 +7,11 @@
             基本信息
         </div> -->
 
-        <div class="mx-4 flex  flex-col  mt-4 w-1/2">
+        <div class="mx-4 flex  flex-col  mt-4  ">
             <div>
                 <div
                     class="w-20 h-20   hover:shadow-xl flex justify-center items-center shadow border-8 border-white rounded-full relative flex-shrink-0">
-                    <img class=" w-full h-full rounded-full absolute" ref="groupAvatarImg" />
+                    <img class=" w-full h-full rounded-full absolute" ref="groupAvatarImg" :src="form?.avatar" />
                     <div class="w-20 h-20 rounded-full flex justify-center items-center" v-if="!form.avatar">
                         <div class="text-5xl text-gray-700">
                             <!-- {{ form?.name[0] || '' }} -->
@@ -82,6 +82,9 @@ export default {
             api.post("group/save", this.form).then(res => {
                 if (res.code == 0) {
                     this.store.fetchGroupList();
+                    this.sucess("保存群信息成功")
+                } else {
+
                 }
             })
         },

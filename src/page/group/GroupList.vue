@@ -38,10 +38,10 @@
                             $router.push({ path: '/group/profile' });
                         }
                     ">
-                    <div v-if="!i.group?.avatar">
+                    <!-- <div v-if="!i.group?.avatar">
 
                         {{ i.group?.name[0] ?? '' }}
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mx-2 flex-grow overflow-hidden flex-shrink">
                     <div class="text-base">{{ i.group?.name }}</div>

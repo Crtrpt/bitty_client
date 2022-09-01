@@ -1,10 +1,12 @@
 
 import { info } from "autoprefixer";
 import { appStore } from "../store/appStore";
+import alertUtils from "./alertUtils";
 export default {
     install(Vue, options) {
         Vue.mixin({
             methods: {
+                ...alertUtils,
                 prttyDate: function (time) {
 
                     var date = new Date(time),
@@ -32,39 +34,7 @@ export default {
                         size < 1000_000_000_000 && (size / 1000_000_000).toFixed(2) + "g" || "未知";
                 },
                 //提示框
-                alert: function (msg, options) {
-                    var options = {
-                        type: "info",
-                        timeout: 2000,
-                        ...options,
 
-                    }
-                    console.log("弹框提示")
-                    var store = appStore()
-                    store.sysInfo.alert.unshift({
-                        msg: msg,
-                        ...options
-                    })
-                    if (store.sysInfo.alert.length > 5) {
-                        store.sysInfo.alert.pop();
-                    }
-
-                    setTimeout(() => {
-                        store.sysInfo.alert.pop();
-                    }, options.timeout)
-                },
-                success(msg) {
-                    this.alert(msg, { type: "success" });
-                },
-                info(msg) {
-                    this.alert(msg, { type: "info" });
-                },
-                error(msg) {
-                    this.alert(msg, { type: "error" });
-                },
-                warning(msg) {
-                    this.alert(msg, { type: "warning" });
-                },
                 //确认框
                 confirm: function (options) {
 
