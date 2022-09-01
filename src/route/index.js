@@ -45,6 +45,11 @@ const route = [
                 path: "profile",
                 component: () => import(`../page/contact/Profile.vue`),
               },
+              {
+                path: "setting",
+                component: () => import(`../page/contact/Setting.vue`),
+                // redirect: "base",
+              },
             ],
           },
           {
