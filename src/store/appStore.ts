@@ -35,15 +35,19 @@ export const appStore = defineStore("appStore", {
         mapList: [
           {
             name: "mapbox",
+            component: "MapboxMap",
           },
           {
             name: "google",
+            component: "GoogleMap",
           },
           {
             name: "高德",
+            component: "GaodeMap",
           },
           {
             name: "百度",
+            component: "BaiduMap",
           },
         ],
         curMap: "",
@@ -295,6 +299,10 @@ export const appStore = defineStore("appStore", {
     },
     sysInit() {
       console.log("语言初始化");
+      console.log(this.userInfo.config.map);
+      this.sysInfo.curMap =
+        this.sysInfo.mapList[this.userInfo.config.map]?.component ||
+        "MapboxMap";
     },
     wakeup() {
       this.fetchSessionList();
@@ -302,6 +310,7 @@ export const appStore = defineStore("appStore", {
       this.fetchUserSessionList();
       this.fetchGroupList();
       this.mqttInit();
+      this.sysInit();
     },
     setLogin(payload: any) {
       this.isLogin = true;
