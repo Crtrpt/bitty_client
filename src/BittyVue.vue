@@ -1,10 +1,10 @@
 <template>
   <div class="w-full h-full relative">
     <router-view v-slot="{ Component }">
-  <keep-alive>
-    <component :is="Component" />
-  </keep-alive>
-</router-view>
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
 
     <div id="dialog" class=" ">
 
@@ -35,15 +35,12 @@ export default {
     return { store };
   },
   mounted() {
+    //获取系统的配置信息
     this.store.fetchSysInfo();
+    //如果用户登录状态那么获取其他数据
     if (this.store.userInfo) {
-      this.store.fetchSessionList();
-      this.store.fetchUserSessionList();
-      this.store.fetchContactList();
-      this.store.fetchGroupList();
-      this.store.mqttInit();
+      this.store.wakeup();
     }
-
     navigator.connection.addEventListener("change", () => {
       if (navigator.connection.rtt == 0) {
         this.warning("网络链接已经断开");

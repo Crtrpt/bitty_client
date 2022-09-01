@@ -89,7 +89,29 @@
         <div>使用语言</div>
         <div class="action mt-2 flex">
           <select @change="changeLanguage" v-model="store.userInfo.config.language" class=" input rounded">
-            <option v-for="l, i in languageList" :key="l" :value="i">
+            <option v-for="l, i in store.sysInfo.languageList" :key="l" :value="i">
+              {{ l.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="border p-2 mt-2 flex flex-col  rounded">
+        <div>使用地图</div>
+        <div class="action mt-2 flex">
+          <select v-model="store.userInfo.config.map" class=" input rounded">
+            <option v-for="l, i in store.sysInfo.mapList" :key="l" :value="i">
+              {{ l.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="border p-2 mt-2 flex flex-col  rounded">
+        <div>使用翻译</div>
+        <div class="action mt-2 flex">
+          <select v-model="store.userInfo.config.translate" class=" input rounded">
+            <option v-for="l, i in store.sysInfo.translateList" :key="l" :value="i">
               {{ l.name }}
             </option>
           </select>
@@ -183,16 +205,6 @@ export default {
   },
   data() {
     return {
-      languageList: [
-        {
-          code: "en",
-          name: "English",
-        },
-        {
-          code: "zh",
-          name: "中文",
-        },
-      ],
     };
   },
 };

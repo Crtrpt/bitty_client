@@ -21,6 +21,41 @@ export const appStore = defineStore("appStore", {
       sysInfo: {
         isConnect: false,
         alert: [],
+        languageList: [
+          {
+            code: "en",
+            name: "English",
+          },
+          {
+            code: "zh",
+            name: "中文",
+          },
+        ],
+        curLang: "",
+        mapList: [
+          {
+            name: "mapbox",
+          },
+          {
+            name: "google",
+          },
+          {
+            name: "高德",
+          },
+          {
+            name: "百度",
+          },
+        ],
+        curMap: "",
+        translateList: [
+          {
+            name: "google",
+          },
+          {
+            name: "百度",
+          },
+        ],
+        curTranslate: "",
       },
       //系统配置
       config: {
@@ -253,9 +288,20 @@ export const appStore = defineStore("appStore", {
     },
     clearLoginInfo() {
       this.contactList = [];
+      this.groupList = [];
       this.curContact = null;
       this.sessionList = [];
       this.curSession = null;
+    },
+    sysInit() {
+      console.log("语言初始化");
+    },
+    wakeup() {
+      this.fetchSessionList();
+      this.fetchContactList();
+      this.fetchUserSessionList();
+      this.fetchGroupList();
+      this.mqttInit();
     },
     setLogin(payload: any) {
       this.isLogin = true;
@@ -264,6 +310,9 @@ export const appStore = defineStore("appStore", {
       window.localStorage.setItem("auth", JSON.stringify(payload));
       this.fetchSessionList();
       this.fetchContactList();
+      this.fetchGroupList();
+      //初始化私人配置
+      this.sysInit();
     },
     syncUserInfo() {
       window.localStorage.setItem("auth", JSON.stringify(this.userInfo));

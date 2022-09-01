@@ -11,8 +11,8 @@
       <div v-if="data.avatar == ''">
         {{ data.name[0] || '' }}
       </div>
-      <font-awesome-icon v-if="config.suspend" class="absolute -bottom-2 -right-2 w-3  cursor-pointer text-gray-600"
-        icon="ban" />
+      <font-awesome-icon v-if="config?.suspend ?? false"
+        class="absolute -bottom-2 -right-2 w-3  cursor-pointer text-gray-600" icon="ban" />
       <div class=" text-center absolute -top-3 -right-6" v-if="data.unread > 0">
         <div class=" scale-50    text-center   border-2 border-white  p-1   bg-red-500
           rounded-full  px-3 text-white">
