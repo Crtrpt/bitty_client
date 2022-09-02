@@ -1,24 +1,23 @@
 <template>
-    <div ref="map" class="w-full h-full">
-    </div>
+    <component :is="curMap" :center="center" :zoom="zoom"></component>
 </template>
 
 <script lang="ts">
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css"
-import { appStore } from "../store/appStore";
-import { LanguageControl } from 'mapbox-gl-controls';
-
+import { appStore } from '../store/appStore';
+import MapboxMapViewer from './map/MapboxMapViewer.vue';
+import GaodeMapViewer from './map/GaodeMapViewer.vue';
 
 export default {
     name: "MapViewer",
+    components: { MapboxMapViewer, GaodeMapViewer },
     props: {
         center: Object,
-        zoom: Number
+        zoom: Number,
+        type: String,
     },
-    data() {
-        return {
-            accessToken: import.meta.env.VITE_MAPBOX_TOKEN
+    computed: {
+        curMap() {
+            return this.type + 'MapViewer';
         }
     },
     setup() {
@@ -26,22 +25,7 @@ export default {
         return { store };
     },
     mounted() {
-        mapboxgl.accessToken = this.accessToken;
-        var map = new mapboxgl.Map({
-            container: this.$refs.map,
-            style: "mapbox://styles/mapbox/streets-v11",
-            zoom: this.zoom || 12,
-        });
-
-        const languageControl = new LanguageControl({
-            language: 'zh',
-        });
-
-        map.addControl(languageControl);
-        map.setCenter(this.center)
-        const marker1 = new mapboxgl.Marker()
-            .setLngLat(this.center)
-            .addTo(map);
+        console.log(this.$attrs);
     },
 };
 </script>

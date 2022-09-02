@@ -47,7 +47,15 @@ export default {
                     center: [105.602725, 37.076636], //初始化地图中心点位置
                 });
                 this.map.on("click", (e: any) => {
-                    alert("点击")
+                    console.log(e);
+                    this.$emit("clickMap", {
+                        type: "gaode",
+                        zoom: map.getZoom(),
+                        lngLat: [
+                            e.lnglat.lng,
+                            e.lnglat.lat
+                        ]
+                    })
                 })
                 console.log(AMap);
                 // var toolbar = new AMap.ToolBar();

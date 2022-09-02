@@ -1,6 +1,6 @@
 <template>
     <div class=" block  bg-white shadow rounded text-base text-gray-800 h-48 w-96">
-        <MapViewer :center="data.payload.lngLat" :zoom="data.payload.zoom">
+        <MapViewer :center="data.payload.lngLat" :zoom="data.payload.zoom" :type="data.payload.type">
         </MapViewer>
     </div>
 </template>

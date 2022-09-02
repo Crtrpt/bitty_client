@@ -1,7 +1,8 @@
 <template>
     <div :class="{
+    
         ...className,
-        'flex  flex-col justify-center': true
+        'flex  flex-col ': true,
     }">
 
 

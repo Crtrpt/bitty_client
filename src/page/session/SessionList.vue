@@ -21,7 +21,7 @@
           icon="search" />
       </div>
     </div>
-    <SessionSearch v-if="displaySearch" :keywords="keywords"  class="flex-shrink-0 "></SessionSearch>
+    <SessionSearch v-if="displaySearch" :keywords="keywords" class="flex-shrink-0 "></SessionSearch>
 
     <div class="flex-grow overflow-x-auto">
       <div v-for="i in store.sessionList" :key="i" class="flex hover:bg-gray-200" :class="{
@@ -32,7 +32,7 @@
     $router.push({ path: '/session/' + i.session_id + '/chat' });
   }
 ">
-        <SessionItem :data="i"></SessionItem>
+        <SessionItem :data="i" class=""></SessionItem>
       </div>
     </div>
   </div>

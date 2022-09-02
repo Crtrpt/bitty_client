@@ -5,7 +5,7 @@
             <div class="flex justify-center items-center">
                 <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="user" />
                 <div>联系人</div>
-                <div>({{ store.sessionList.size||0 }})</div>
+                <div>({{ store.sessionList.size || 0 }})</div>
             </div>
 
             <div class="flex justify-center">
@@ -31,7 +31,7 @@
                 <div :style="{
                     backgroundImage: 'url(' + i.user?.avatar + ')',
                     backgroundSize: 'cover',
-                }" class="rounded-full w-8 h-8 flex-grow-0 flex-shrink-0" :src="i.user?.avatar || ''" @click="
+                }" class="rounded-full w-10 h-10 flex-grow-0 flex-shrink-0" :src="i.user?.avatar || ''" @click="
     () => {
         $router.push({ path: '/user/profile' });
     }
