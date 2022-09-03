@@ -6,6 +6,7 @@ import {
   mqttPublish,
   mqttUnsubscribe,
 } from "../api/mqtt";
+import { msg_chat_type, msg_ctrl_type } from "../const";
 
 export const appStore = defineStore("appStore", {
   state: () => {
@@ -141,9 +142,9 @@ export const appStore = defineStore("appStore", {
     connect(c) {
       this.sysInfo.isConnect = true;
     },
-    message(msg, payload) {
-      console.log("message================");
-      var msgSegment = msg.split("/");
+    message(topic: string, payload: any) {
+      console.log("topic================:" + topic);
+      var msgSegment = topic.split("/");
       var msgPayload = JSON.parse(payload.toString());
       console.log(msgSegment);
       console.log(payload.toString());
@@ -154,18 +155,71 @@ export const appStore = defineStore("appStore", {
           var msgSession = this.sessionMap.get(session_id);
 
           console.log(this.curSession);
-          //如果不是自己发的 那么 未读消息+1
-          if (this.curSession?.session_id != session_id) {
-            msgSession.unread = msgSession.unread + 1 || 1;
-          } else {
-            msgSession.unread = 0;
-          }
-          msgSession.lastmsg = msgPayload.content;
-          msgSession.lastmsg_at = msgPayload.created_at;
+
           switch (msgSegment[3]) {
             case "chat": {
-              console.log(msgSession);
-              msgSession.chat.list.push(JSON.parse(payload.toString()));
+              var payload = JSON.parse(payload.toString());
+              var chatList = msgSession.chat.list;
+              switch (payload.msg_type) {
+                case msg_chat_type: {
+                  //如果不是本人发送的
+                  console.log(payload.sender_id);
+                  console.log(this.userInfo.user.user_id);
+
+                  //如果不是自己发的 那么 未读消息+1
+                  if (this.curSession?.session_id != session_id) {
+                    msgSession.unread = msgSession.unread + 1 || 1;
+                  } else {
+                    msgSession.unread = 0;
+                  }
+                  msgSession.lastmsg = msgPayload.content;
+                  msgSession.lastmsg_at = msgPayload.created_at;
+
+                  if (payload.sender_id != this.userInfo.user.user_id) {
+                    chatList.push(payload);
+                    console.log("发送消息回执");
+                    //当前用户
+                    this.send(
+                      topic,
+                      {
+                        sender_id: this.userInfo.user.user_id,
+                        sn: payload.sn,
+                        payload: {
+                          type: 0,
+                        },
+                      },
+                      msg_ctrl_type
+                    );
+                  } else {
+                    // console.log("修改消息状态为已发送");
+                    for (var i = chatList.length; i > 0; i--) {
+                      var msg = chatList[i - 1];
+                      if (
+                        msg.sender_id == this.userInfo.user.user_id &&
+                        msg.sn == payload.sn
+                      ) {
+                        // console.log("修改状态");
+                        msg.send_type = 40;
+                        break;
+                      }
+                    }
+                    console.log(this.curSession.chat.list);
+                  }
+                  break;
+                }
+                case msg_ctrl_type: {
+                  console.log("收到控制消息");
+                  if (payload.sender_id == this.userInfo.user.user_id) {
+                    break;
+                  }
+                  switch (payload.payload.type) {
+                    case 0:
+                      console.log("收到消息确认");
+                      break;
+                  }
+                  break;
+                }
+              }
             }
           }
           break;
@@ -196,9 +250,18 @@ export const appStore = defineStore("appStore", {
         list: [],
       };
     },
-    send(topic: any, payload: any) {
+    send(topic: any, payload: any, msg_type: any = 0) {
+      payload.send_type = 0;
+      payload.msg_type = msg_type;
+      payload.cmd = 0;
+      payload.pre_id =
+        this.curSession.chat[this.curSession.chat.length]?.sn ?? "";
       console.log("publish:" + topic);
       console.log("payload:", payload);
+      if (msg_type == msg_chat_type) {
+        //加入本地发送列表
+        this.curSession.chat.list.push(payload);
+      }
       mqttPublish(topic, JSON.stringify(payload));
     },
     setContact(payload: any) {

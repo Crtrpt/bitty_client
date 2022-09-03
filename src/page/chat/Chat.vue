@@ -23,12 +23,13 @@
 
       </div>
 
-      <ChatList ref="chatlist" class="flex-grow p-2 overflow-scroll" :data="this.store.curSession?.chat || {}">
+      <ChatList @showMessageDetail="(msg) => { curMessage = msg }" ref="chatlist" class="flex-grow p-2 overflow-scroll"
+        :data="this.store.curSession?.chat || {}">
       </ChatList>
 
       <ChatInput class="h-1/3 border-t flex-shrink-0" />
     </div>
-    <!-- <Right class="w-1/3"></Right> -->
+    <!-- <Right @close="() => { curMessage = null }" class="w-1/2" v-if="curMessage" :data="curMessage"></Right> -->
   </div>
 </template>
 
@@ -51,7 +52,7 @@ export default {
   },
   data() {
     return {
-
+      curMessage: null
     };
   },
   watch: {

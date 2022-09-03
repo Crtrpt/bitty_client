@@ -6,6 +6,7 @@
       <FileInput :sn="sn"></FileInput>
       <MapInput :sn="sn"></MapInput>
       <AudioInput :sn="sn"></AudioInput>
+      <VideoInput :sn="sn"></VideoInput>
     </div>
     <div class="p-2  flex-grow">
       <textarea class=" border-none  w-full h-full  " v-model="draft" placeholder="输入你要发送的内容 control+enter 键发送"
@@ -16,12 +17,13 @@
 
 <script lang="ts">
 import { appStore } from "../../store/appStore";
-import ImageInput from "./ImageInput.vue";
-import FileInput from "./FileInput.vue";
-import MapInput from "./MapInput.vue";
-import AudioInput from "./AudioInput.vue";
-
+import ImageInput from "../input/ImageInput.vue";
+import FileInput from "../input/FileInput.vue";
+import MapInput from "../input/MapInput.vue";
+import AudioInput from "../input/AudioInput.vue";
+import VideoInput from "../input/VideoInput.vue";
 import { chat_text_type } from "../../const";
+
 export default {
   name: "ChatInput",
   data() {
@@ -53,6 +55,6 @@ export default {
     const store = appStore();
     return { store };
   },
-  components: { ImageInput, FileInput, MapInput, AudioInput }
+  components: { ImageInput, FileInput, MapInput, AudioInput, VideoInput }
 };
 </script>
