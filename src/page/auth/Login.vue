@@ -36,8 +36,11 @@
       <div class="block">
         <div class="flex mt-2">
           <div @click="login"
-            class="border p-2 px-5 rounded bg-blue-600 hover:bg-blue-700 text-white border-gray-300 hover:border-indigo-300 cursor-pointer">
+            class=" transition-all border p-2 px-5 rounded bg-blue-500  text-white border-blue-500  hover:bg-blue-600 hover:border-blue-600 cursor-pointer">
+
             {{ $t("login_btn") }}
+            <font-awesome-icon v-if="processing" class="animate-spin w-5 h-3  text-white" icon=" fa-solid fa-spinner">
+            </font-awesome-icon>
           </div>
           <div v-if="store?.sysInfo?.conf.allow_signup ?? false" @click="
             () => {
@@ -99,9 +102,10 @@ export default {
         this.alert("需要同意许可协议才能继续", { type: "error" });
         return;
       }
+      this.processing = true;
       api.post("auth/login", this.form).then((res) => {
+        this.processing = false;
         if (res.code == 0) {
-
           _this.setLogin(res.data);
           api.headers["Token"] = res.data.token;
           _this.$router.push({
@@ -133,6 +137,7 @@ export default {
   },
   data() {
     return {
+      processing: false,
       displayDiglog: true,
       form: {
         account: "",

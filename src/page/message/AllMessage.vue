@@ -3,7 +3,7 @@
     <div class="text-3xl mt-10 px-4 mb-5">全部消息</div>
     <div class="  flex-grow overflow-auto">
       <div class="px-4">
-        <message-item :m="m" v-for="m in list" :key="m"></message-item>
+        <message-item :m="m" v-for="m in list" :key="m" @update="allMessage"></message-item>
       </div>
     </div>
   </div>
@@ -19,7 +19,6 @@ export default {
   name: "AllMessage",
   methods: {
     allMessage() {
-      var _store = this.store;
       var _this = this;
       api
         .get("msg/allMessage", {

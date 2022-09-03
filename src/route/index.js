@@ -151,7 +151,7 @@ const route = [
           },
           {
             path: "",
-            component: () => import(`../page/message/AllMessage.vue`),
+            component: () => import(`../page/message/UnreadMessage.vue`),
           },
         ]
       }

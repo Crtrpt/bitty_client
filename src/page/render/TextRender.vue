@@ -35,7 +35,6 @@ export default {
             }
         });
         this.raw_html = (md.render(this.data.content));
-        console.log(this.raw_html)
     }
 };
 </script>

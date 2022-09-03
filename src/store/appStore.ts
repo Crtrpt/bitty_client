@@ -199,7 +199,7 @@ export const appStore = defineStore("appStore", {
                         break;
                       }
                     }
-                    console.log(this.curSession.chat.list);
+                    // console.log(this.curSession.chat.list);
                   }
                   break;
                 }

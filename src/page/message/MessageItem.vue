@@ -14,12 +14,12 @@
             <!-- //未处理  -->
             <div class="action  flex text-xs flex-row-reverse w-full">
                 <template v-if="m.source_id != store.userInfo.user.user_id">
-                    <div class="rounded cursor-pointer whitespace-nowrap px-2 py-1 mx-2 bg-blue-400"
+                    <div class="rounded cursor-pointer whitespace-nowrap px-2 py-1 mx-2 bg-blue-500 hover:bg-blue-600 text-white"
                         @click="action(m, 0)">
                         同意
                     </div>
                     <div v-if="m.source_id != store.userInfo.user.user_id" @click="action(m, 1)"
-                        class="rounded cursor-pointer whitespace-nowrap px-2 py-1 mx-2 bg-blue-400 text-white">
+                        class="rounded cursor-pointer whitespace-nowrap px-2 py-1 mx-2 bg-blue-400 hover:bg-blue-500 text-white">
                         拒绝
                     </div>
                 </template>
@@ -60,6 +60,7 @@ export default {
                 } else {
                     this.error(res.msg);
                 }
+                this.$emit("update")
             })
         },
     },
