@@ -1,11 +1,8 @@
 <template>
     <div class="container mx-auto">
         <div class="text-3xl mt-10 px-4">
-            群组设置
-        </div>
-        <!-- <div class="text-xl mt-10 px-4">
             基本信息
-        </div> -->
+        </div>
 
         <div class="mx-4 flex  flex-col  mt-4  ">
             <div>

@@ -39,8 +39,6 @@
                 进入群组
             </div>
 
-
-
             <div v-if="data.owner_user_id == store.userInfo.user.user_id"
                 class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
                     $router.push({
@@ -48,6 +46,13 @@
                     })
                 }">
                 设置
+            </div>
+            <div class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
+                $router.push({
+                    path: 'setting/group_users'
+                })
+            }">
+                群成员
             </div>
 
             <ContactSelect :open="openContactSelect" :groupId="$route.params.id"
