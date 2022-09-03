@@ -22,6 +22,7 @@ export const appStore = defineStore("appStore", {
       //用户信息
       userInfo: userinfo,
       sysInfo: {
+        showMessageNotifucation: false,
         isConnect: false,
         alert: [],
         languageList: [
@@ -218,6 +219,15 @@ export const appStore = defineStore("appStore", {
             }
           }
           break;
+        case "user": {
+          switch (msgSegment[3]) {
+            case "message": {
+              this.sysInfo.showMessageNotifucation = true;
+              break;
+            }
+          }
+          break;
+        }
       }
     },
     subscribe(topic: string) {
@@ -235,7 +245,7 @@ export const appStore = defineStore("appStore", {
         connect: this.connect,
         message: this.message,
         disconnect: this.disconnect,
-        topic: "/" + this.userInfo.user.user_id + "/#",
+        topic: "/user/" + this.userInfo.user.user_id + "/#",
       });
     },
     setChat(payload: any) {

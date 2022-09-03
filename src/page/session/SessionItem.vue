@@ -13,14 +13,13 @@
       </div>
       <font-awesome-icon v-if="config?.suspend ?? false"
         class="absolute -bottom-2 -right-2 w-3  cursor-pointer text-gray-600" icon="ban" />
-      <div class=" text-center absolute -top-3 -right-6" v-if="data.unread > 0">
-        <div class=" scale-50    text-center   border-2 border-white  p-1   bg-red-500
-          rounded-full  px-3 text-white">
-          {{ data.unread ||
-              ""
-          }}
-        </div>
-      </div>
+
+
+      <span class="flex h-2 w-2 absolute -right-1 top-0" v-if="data.unread > 0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+      </span>
+
     </div>
     <div class="mx-2 flex-grow overflow-hidden flex-shrink pl-2">
       <div class="text-base">{{ data.name }}</div>

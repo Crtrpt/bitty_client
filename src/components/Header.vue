@@ -23,11 +23,15 @@
         </div>
       </div>
     </div>
-    <a class="h-10 flex-shrink-0" @click="
+    <a class="h-10 flex-shrink-0 relative" @click="
       () => {
         $router.push({ path: '/session' });
       }
     ">
+      <!-- <span class="flex h-2 w-2 absolute -right-1">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+      </span> -->
       <font-awesome-icon class="w-5 cursor-pointer hover:text-gray-800" icon="message" :class="{
         'text-blue-500': active == 'session',
       }" />
@@ -61,7 +65,11 @@
         <font-awesome-icon class="w-5 cursor-pointer" icon="arrow-right-from-bracket" />
       </a>
 
-      <a class="h-10">
+      <a class="h-10 relative">
+        <span class="flex h-2 w-2 absolute -right-1" v-if="store.sysInfo.showMessageNotifucation">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        </span>
         <font-awesome-icon class="w-5 cursor-pointer" icon="bell" :class="{
           'text-blue-500': active == 'message',
         }" @click="
