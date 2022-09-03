@@ -102,6 +102,7 @@ export default {
                     type: "chat",
                 })
                 .then((res) => {
+                    this.store.fetchSessionList();
                     if (res.code == 0) {
                         _this.$router.push({
                             path: "/session/" + res.data.session_id + "/" + "chat",

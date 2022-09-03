@@ -82,7 +82,7 @@ export default {
             api.post("group/save", this.form).then(res => {
                 if (res.code == 0) {
                     this.store.fetchGroupList();
-                    this.sucess("保存群信息成功")
+                    this.success("保存群信息成功")
                 } else {
 
                 }

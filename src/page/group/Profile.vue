@@ -39,11 +39,14 @@
                 进入群组
             </div>
 
-            <div class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
-                $router.push({
-                    path: 'setting/base'
-                })
-            }">
+
+
+            <div v-if="data.owner_user_id == store.userInfo.user.user_id"
+                class="px-4 py-2 border rounded text-blue-500 mx-2 cursor-pointer hover:text-red-500" @click="() => {
+                    $router.push({
+                        path: 'setting/base'
+                    })
+                }">
                 设置
             </div>
 
@@ -56,7 +59,14 @@
                 邀请好友
             </div>
 
-            <div class="px-4 py-2 border rounded text-red-500 mx-2 cursor-pointer hover:text-red-500" @click="remove">
+            <div v-if="data.owner_user_id != store.userInfo.user.user_id"
+                class="px-4 py-2 border rounded text-red-500 bg-white cursor-pointer hover:text-red-600"
+                @click="createSession('chat')">
+                退出
+            </div>
+
+            <div v-if="data.owner_user_id == store.userInfo.user.user_id"
+                class="px-4 py-2 border rounded text-red-500 mx-2 cursor-pointer hover:text-red-500" @click="remove">
                 删除
             </div>
         </div>

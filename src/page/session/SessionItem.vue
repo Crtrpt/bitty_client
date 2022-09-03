@@ -25,7 +25,7 @@
     <div class="mx-2 flex-grow overflow-hidden flex-shrink pl-2">
       <div class="text-base">{{ data.name }}</div>
       <div class="text-xs text-gray-400 whitespace-nowrap w-0">
-        {{ data.lastmsg || "暂无" }}
+        {{ data.lastmsg || data.description || "暂无" }}
       </div>
     </div>
 
