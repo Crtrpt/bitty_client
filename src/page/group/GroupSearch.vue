@@ -67,16 +67,18 @@ export default {
                 });
         },
         addEndpoint(u) {
+            console.log(u);
             var _this = this;
             api
                 .post("group/join", {
                     type: 1,
                     user_id: _this.store.userInfo.user.user_id,
-                    target_id: u.user_id,
+                    target_id: u.group_id,
                 })
                 .then((res) => {
                     if (res.code == 0) {
-                        this.alert("已经发送好友申请");
+                        this.success("申请加入成功");
+                        this.store.fetchGroupList();
                     } else {
                         this.alert(res.msg);
                     }

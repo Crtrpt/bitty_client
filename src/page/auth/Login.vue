@@ -31,8 +31,6 @@
           </div>
         </div>
       </div>
-
-
       <div class="block">
         <div class="flex mt-2">
           <div @click="login"

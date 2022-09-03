@@ -22,7 +22,7 @@
                         <div class="text-sm text-gray-500 h-10 overflow-hidden">
                             {{ data.description || "" }}
                         </div>
-                        <div class="text-xs text-gray-500  overflow-hidden">
+                        <div class="text-xs mt-4 text-gray-500  overflow-hidden">
                             创建于: {{ data.created_at || "" }}
                         </div>
                         <!-- <div class="text-xs text-gray-500  overflow-hidden">
@@ -66,7 +66,7 @@
 
             <div v-if="data.owner_user_id != store.userInfo.user.user_id"
                 class="px-4 py-2 border rounded text-red-500 bg-white cursor-pointer hover:text-red-600"
-                @click="createSession('chat')">
+                @click="exitGroup()">
                 退出
             </div>
 
@@ -118,6 +118,19 @@ export default {
                     this.data = res.data;
                 });
         },
+        exitGroup() {
+            api
+                .post("group/user/remove", {
+                    user_id: this.store.userInfo.user.user_id,
+                    group_id: this.$route.params.id
+                })
+                .then((res) => {
+                    if (res.code == 0) {
+                        this.success("退出成功");
+                        this.store.fetchGroupList();
+                    }
+                });
+        },
         remove() {
             api
                 .post("group/remove", {
@@ -131,21 +144,22 @@ export default {
                 });
         },
         createSession(type: string) {
-            var _this = this;
-            _this.$router.push({
-                path: "/session/" + this.data.session_id + "/" + "chat",
-            });
+            api
+                .post("session/create", {
+                    user_id: this.store.userInfo.user.user_id,
+                    target_id: this.$route.params.id,
+                    type: "group",
+                })
+                .then((res) => {
+                    if (res.code == 0) {
+                        this.store.fetchSessionList();
+                        this.$router.push({
+                            path: "/session/" + this.data.session_id + "/" + "chat",
+                        });
+                    }
+                })
+
         },
-        // fetchGroupInfo() {
-        //     api
-        //         .get("group/info", {
-        //             user_id: this.store.userInfo.user.user_id,
-        //             target_id: this.$route.params.id,
-        //         })
-        //         .then((res) => {
-        //             this.contact = res.data;
-        //         });
-        // },
     },
     created() {
         this.fetchGroupInfo();
