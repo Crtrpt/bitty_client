@@ -5,7 +5,7 @@
             <div class="flex justify-center items-center">
                 <font-awesome-icon class="w-5  px-2 text-gray-500 cursor-pointer hover:text-gray-800" icon="user" />
                 <div>联系人</div>
-                <div>({{ store.sessionList.size || 0 }})</div>
+                <div>({{ store.userInfo?.count?.contact_count || 0 }})</div>
             </div>
 
             <div class="flex justify-center">

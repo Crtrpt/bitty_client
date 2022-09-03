@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import api from "../api/api";
+import localstorage from "../utils/localstorage";
 import {
   mqttInit,
   mqttSubject,
@@ -7,12 +8,13 @@ import {
   mqttUnsubscribe,
 } from "../api/mqtt";
 import { msg_chat_type, msg_ctrl_type } from "../const";
+import { auto } from "@popperjs/core";
 
 export const appStore = defineStore("appStore", {
   state: () => {
     var userinfo = null;
     try {
-      userinfo = JSON.parse(window.localStorage.getItem("auth")!);
+      userinfo = localstorage.get("auth");
       api.headers["Token"] = userinfo.token;
     } catch (e) {}
 
@@ -151,11 +153,7 @@ export const appStore = defineStore("appStore", {
       switch (msgSegment[1]) {
         case "session":
           var session_id = msgSegment[2];
-
           var msgSession = this.sessionMap.get(session_id);
-
-          console.log(this.curSession);
-
           switch (msgSegment[3]) {
             case "chat": {
               var payload = JSON.parse(payload.toString());
@@ -163,9 +161,6 @@ export const appStore = defineStore("appStore", {
               switch (payload.msg_type) {
                 case msg_chat_type: {
                   //如果不是本人发送的
-                  console.log(payload.sender_id);
-                  console.log(this.userInfo.user.user_id);
-
                   //如果不是自己发的 那么 未读消息+1
                   if (this.curSession?.session_id != session_id) {
                     msgSession.unread = msgSession.unread + 1 || 1;
@@ -379,7 +374,7 @@ export const appStore = defineStore("appStore", {
       this.isLogin = true;
       this.userInfo = payload;
       this.clearLoginInfo();
-      window.localStorage.setItem("auth", JSON.stringify(payload));
+      localstorage.save("auth", payload);
       this.fetchSessionList();
       this.fetchContactList();
       this.fetchGroupList();
