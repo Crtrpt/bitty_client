@@ -1,5 +1,4 @@
-import { AES } from "crypto-js";
-import CryptoJS from "crypto-js";
+import crypt from "./crypt";
 
 const renderKey = (key: string) => {
   return import.meta.env.VITE_VERSION_MAJOR + ":" + key;
@@ -7,18 +6,20 @@ const renderKey = (key: string) => {
 
 export default {
   save(key: string, val: any) {
-    let data = AES.encrypt(
-      JSON.stringify(val),
-      import.meta.env.VITE_LOCALSTOREGE_KEY
-    ).toString();
+    let data = JSON.stringify(val);
+    if (import.meta.env.VITE_LOCALSTORAGE_KEY != "") {
+      data = crypt.enc(data);
+    }
     localStorage.setItem(renderKey(key), data);
   },
   del(key: string) {
     localStorage.removeItem(renderKey(key));
   },
   get(key: string) {
-    let encData = localStorage.getItem(renderKey(key));
-    let binData = AES.decrypt(encData!, import.meta.env.VITE_LOCALSTOREGE_KEY);
-    return JSON.parse(binData.toString(CryptoJS.enc.Utf8));
+    let data = localStorage.getItem(renderKey(key));
+    if (import.meta.env.VITE_LOCALSTORAGE_KEY != "") {
+      data = crypt.dec(data);
+    }
+    return JSON.parse(data!);
   },
 };
