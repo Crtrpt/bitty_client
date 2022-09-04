@@ -22,6 +22,10 @@ const route = [
                 component: () => import(`../page/chat/Chat.vue`),
               },
               {
+                path: "history",
+                component: () => import(`../page/chat/History.vue`),
+              },
+              {
                 path: "profile",
                 component: () => import(`../page/session/SessionProfile.vue`),
               },

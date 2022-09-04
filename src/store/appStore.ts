@@ -242,7 +242,7 @@ export const appStore = defineStore("appStore", {
     },
     mqttInit() {
       mqttInit({
-        clientId: this.userInfo.token,
+        clientId: this.userInfo.curToken.client_id,
         connect: this.connect,
         message: this.message,
         disconnect: this.disconnect,

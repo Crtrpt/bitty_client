@@ -5,6 +5,7 @@ var client: MqttClient;
 export const mqttInit = (options: any) => {
   var opt: IClientOptions = {
     clientId: options.clientId,
+    username: options.client_id,
   };
   client = mqtt.connect(import.meta.env.VITE_MQTT, opt);
   client.on("connect", () => {

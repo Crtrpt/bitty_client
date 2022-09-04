@@ -17,6 +17,11 @@
       <div class="param  text-sm text-gray-500 mt-0">
         <div>创建于{{ prttyDate(session.session?.created_at ?? 0) }}</div>
       </div>
+      <div class="mt-4">
+        <router-link :to="{path: './history'}" class=" border border-blue-500 px-5 py-1 cursor-pointer hover:bg-blue-500 hover:text-white text-blue-500
+          rounded-full">
+          历史记录</router-link>
+      </div>
       <!-- 配置列表 -->
       <div class="action  mt-4 flex  flex-col" v-if="config">
         <!-- {{ session.user }} -->
